@@ -41,6 +41,21 @@ const re = construct(pattern)
 console.log(re) // /\d+\s*[A-Z]+/
 ```
 
+### Additional Features
+
+#### Lowering TextMate Grammar
+
+Traverse all the regex patterns in a TextMate grammar, and apply `syntaxLowering` to lower the syntax.
+
+```ts
+import { loweringTextmateGrammar } from 'oniguruma-to-js/textmate'
+import grammar from '../path/to/grammars/json.json'
+
+const lowered = loweringTextmateGrammar(grammar)
+```
+
+Note this function will not guarantee the correctness of the result, you many need to verify the result manually.
+
 ## Sponsors
 
 <p align="center">

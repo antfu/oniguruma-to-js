@@ -21,9 +21,12 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
+    },
+    "./textmate": {
+      "import": "./dist/textmate.mjs",
+      "require": "./dist/textmate.cjs"
     }
   },
   "main": "./dist/index.mjs",
@@ -31,6 +34,9 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
+      "./textmate": [
+        "./dist/textmate.d.ts"
+      ],
       "*": [
         "./dist/*",
         "./dist/index.d.ts"

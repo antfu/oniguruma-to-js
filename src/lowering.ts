@@ -28,6 +28,24 @@ export interface SyntaxLoweringOptions {
    * @default false
    */
   preserveFlags?: boolean
+
+  /**
+   * Remove possessive quantifiers like `*+`, `?+`, `++`, `{1,2}+`.
+   *
+   * This might alter the meaning of the regex.
+   *
+   * @default false
+   */
+  removePossessiveQuantifier?: boolean
+
+  /**
+   * Remove atomic group like `(?>...)` to non-capturing group `(?:...)`.
+   *
+   * This might alter the meaning of the regex.
+   *
+   * @default false
+   */
+  removeAtomicGroup?: boolean
 }
 
 export interface SyntaxLoweringResult {
@@ -44,6 +62,8 @@ export function syntaxLowering(
 ): SyntaxLoweringResult {
   const {
     preserveFlags = false,
+    removePossessiveQuantifier = false,
+    removeAtomicGroup = false,
   } = options
 
   let output = ''
@@ -52,20 +72,20 @@ export function syntaxLowering(
   // Stack of open brackets
   const stack: string[] = []
 
-  const wsEscapeLocal: number[] = []
-  let wsEscapeGlobal = false
+  const freeSpacingLocal: number[] = []
+  let freeSpacingGlobal = false
 
   let i = 0
   try {
     while (i < input.length) {
       const char = input[i]
 
-      while (wsEscapeLocal.length && wsEscapeLocal[0] > stack.length) {
-        wsEscapeLocal.shift()
+      while (freeSpacingLocal.length && freeSpacingLocal[0] > stack.length) {
+        freeSpacingLocal.shift()
       }
 
       const head = stack[0]
-      const wsEscape = wsEscapeGlobal || wsEscapeLocal.length
+      const wsEscape = freeSpacingGlobal || freeSpacingLocal.length
 
       // Escape sequences
       if (char === '\\') {
@@ -111,6 +131,13 @@ export function syntaxLowering(
             continue
           }
 
+          // Atomic group
+          if (removeAtomicGroup && input[i + 2] === '>') {
+            output += '(?:'
+            i += 3
+            continue
+          }
+
           // Extract flags
           if (KNOWN_FLAGS.has(input[i + 2])) {
             let end = i + 3
@@ -140,7 +167,7 @@ export function syntaxLowering(
             if (input[end] === ')') {
               i = end + 1
               if (hasX) {
-                wsEscapeGlobal = true
+                freeSpacingGlobal = true
               }
               if (remainFlags.length) {
                 output += `(?${remainFlags})`
@@ -151,7 +178,7 @@ export function syntaxLowering(
               i = end + 1
               stack.unshift(char)
               if (hasX) {
-                wsEscapeLocal.unshift(stack.length)
+                freeSpacingLocal.unshift(stack.length)
               }
               output += `(?${remainFlags}:`
               continue
@@ -236,6 +263,15 @@ export function syntaxLowering(
         continue
       }
 
+      // Possessive quantifiers
+      if (removePossessiveQuantifier && char === '+' && head !== '[') {
+        if ('?+}*'.includes(input[i - 1])) {
+          i += 1
+          continue
+        }
+      }
+
+      // Ignore whitespace if Free-spacing mode is enabled
       if (!(wsEscape && head !== '[' && char.match(/\s/))) {
         // Literals
         output += char

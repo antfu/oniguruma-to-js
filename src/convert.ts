@@ -1,8 +1,9 @@
 import type { ConstructOptions } from './construct'
 import { construct } from './construct'
+import type { SyntaxLoweringOptions } from './lowering'
 import { syntaxLowering } from './lowering'
 
-export interface OnigurumaToRegexpOptions extends Omit<ConstructOptions, 'original'> {
+export interface OnigurumaToRegexpOptions extends Omit<ConstructOptions, 'original'>, SyntaxLoweringOptions {
 
 }
 
@@ -13,7 +14,11 @@ export function onigurumaToRegexp(
   const {
     pattern: converted,
     flags,
-  } = syntaxLowering(pattern)
+  } = syntaxLowering(pattern, {
+    removePossessiveQuantifier: true,
+    removeAtomicGroup: true,
+    ...options,
+  })
 
   return construct(converted, {
     original: pattern,

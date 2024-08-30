@@ -22,7 +22,7 @@ export function onigurumaToRegexp(
 
   return construct(converted, {
     original: pattern,
-    flags,
     ...options,
+    flags: [...new Set([...flags, ...(options.flags || [])])].join(''),
   })
 }

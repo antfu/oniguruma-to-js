@@ -19,12 +19,36 @@ const TABLE_POSIX = /* @__PURE__ */ {
 
 const KNOWN_FLAGS = /* @__PURE__ */ new Set('gimsuyx')
 
+export interface SyntaxLoweringOptions {
+  /**
+   * Preserve flags like `x` in `(?i)` or `(?i:...)`.
+   *
+   * When set to `true`, meaning the result might not be directly usable in JavaScript.
+   *
+   * @default false
+   */
+  preserveFlags?: boolean
+}
+
+export interface SyntaxLoweringResult {
+  pattern: string
+  flags: string
+}
+
 /**
  * Read the Oniguruma regex, lower syntaxes and return a more JavaScript-friendly regex.
  */
-export function syntaxLowering(input: string): string {
+export function syntaxLowering(
+  input: string,
+  options: SyntaxLoweringOptions = {},
+): SyntaxLoweringResult {
+  const {
+    preserveFlags = false,
+  } = options
+
   let output = ''
 
+  const flags = new Set<string>()
   // Stack of open brackets
   const stack: string[] = []
 
@@ -83,11 +107,28 @@ export function syntaxLowering(input: string): string {
               if (!KNOWN_FLAGS.has(input[end]))
                 break
             }
-            const flags = input.slice(i + 2, end)
-            const remainFlags = [...flags].filter(x => x !== 'x').join('')
+            const flagStr = input.slice(i + 2, end)
+            const hasX = flagStr.includes('x') && flagStr[0] !== '-'
+            let remainFlags = [...flagStr].filter(x => x !== 'x').join('')
+
+            if (!preserveFlags) {
+              if (remainFlags[0] === '-') {
+                remainFlags = remainFlags.slice(1)
+                for (const flag of flagStr) {
+                  flags.delete(flag)
+                }
+              }
+              else {
+                for (const flag of remainFlags) {
+                  flags.add(flag)
+                }
+              }
+              remainFlags = ''
+            }
+
             if (input[end] === ')') {
               i = end + 1
-              if (flags.includes('x')) {
+              if (hasX) {
                 wsEscapeGlobal = true
               }
               if (remainFlags.length) {
@@ -98,7 +139,7 @@ export function syntaxLowering(input: string): string {
             else if (input[end] === ':') {
               i = end + 1
               stack.unshift(char)
-              if (flags.includes('x')) {
+              if (hasX) {
                 wsEscapeLocal.unshift(stack.length)
               }
               output += `(?${remainFlags}:`
@@ -200,5 +241,8 @@ export function syntaxLowering(input: string): string {
     )
   }
 
-  return output
+  return {
+    pattern: output,
+    flags: [...flags].join(''),
+  }
 }

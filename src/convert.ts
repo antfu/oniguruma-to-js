@@ -10,9 +10,14 @@ export function onigurumaToRegexp(
   pattern: string,
   options: OnigurumaToRegexpOptions = {},
 ): RegExp {
-  const lowered = syntaxLowering(pattern)
-  return construct(lowered, {
+  const {
+    pattern: converted,
+    flags,
+  } = syntaxLowering(pattern)
+
+  return construct(converted, {
     original: pattern,
+    flags,
     ...options,
   })
 }

@@ -23,7 +23,7 @@ export function loweringTextmateGrammar<T extends TextmateGrammarBasic>(
   const clone = structuredClone(grammar)
 
   const {
-    handlePattern = pattern => syntaxLowering(pattern),
+    handlePattern = pattern => syntaxLowering(pattern, { preserveFlags: true }).pattern,
   } = options
 
   function handle(regex: string): string {

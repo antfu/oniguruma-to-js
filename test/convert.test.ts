@@ -10,3 +10,14 @@ it('with flags', () => {
   expect(onigurumaToRegexp('(?i)foo'))
     .toMatchInlineSnapshot(`/foo/i`)
 })
+
+it('unicode case', () => {
+  const regex = onigurumaToRegexp('\\s*(--)((?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))+)')
+  expect(regex)
+    .toMatchInlineSnapshot(`/\\\\s\\*\\(--\\)\\(\\(\\?:\\[\\[-\\\\w\\]\\[\\^\\\\u0000-\\\\u007F\\]\\]\\|\\(\\?:\\\\\\\\\\[ \\\\t\\]\\{1,6\\}\\[\\\\s\\\\t\\\\n\\\\f\\]\\?\\|\\\\\\\\\\[\\^\\\\n\\\\f \\\\t\\]\\)\\)\\+\\)/`)
+})
+
+it('*+', () => {
+  expect(onigurumaToRegexp('^\\s*+(-)\\s*+(behaviour)\\s*+(\\()\\s*+([a-z][a-zA-Z\\d@_]*+)\\s*+(\\))\\s*+(\\.)'))
+    .toMatchInlineSnapshot(`/\\^\\\\s\\*\\(-\\)\\\\s\\*\\(behaviour\\)\\\\s\\*\\(\\\\\\(\\)\\\\s\\*\\(\\[a-z\\]\\[a-zA-Z\\\\d@_\\]\\*\\)\\\\s\\*\\(\\\\\\)\\)\\\\s\\*\\(\\\\\\.\\)/`)
+})

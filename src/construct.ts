@@ -46,7 +46,15 @@ export function construct(
   const flagSet = new Set<string>(Array.isArray(flags) ? flags : flags.split(''))
 
   pattern = pattern
+    // `\A` is `^` in JavaScript
     .replace(/\\A/g, '^')
+    // `\x{00}` is `\u0000` in JavaScript
+    .replace(/\\x\{([^}]*)\}/g, (m, hex) => `\\u${hex.padStart(4, '0')}`)
+    // JavaScript does not supoort `(?>...)` syntax, replace with `(?:...)`
+    .replace(/\(\?>/g, '(?:')
+    // JavaScript does not support `*+` syntax, replace with `*`
+    .replace(/\*\+/g, '*')
+    // Extract flags
     .replace(/\(\?(-)?(\w+):/g, (_, neg, flagStr) => {
       if (neg) {
         for (const flag of flagStr)

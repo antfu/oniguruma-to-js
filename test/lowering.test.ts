@@ -112,3 +112,13 @@ it('lowering mixed flags', () => {
       }
     `)
 })
+
+it('lowering \\h', () => {
+  expect(syntaxLowering('(?x)\\h [\\h\\w]'))
+    .toMatchInlineSnapshot(`
+      {
+        "flags": "",
+        "pattern": "[ \\t][ \\t\\w]",
+      }
+    `)
+})

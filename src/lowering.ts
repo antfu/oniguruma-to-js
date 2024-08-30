@@ -60,19 +60,30 @@ export function syntaxLowering(
     while (i < input.length) {
       const char = input[i]
 
-      // Escape sequences
-      if (char === '\\') {
-        output += char + input[i + 1]
-        i += 2
-        continue
-      }
-
       while (wsEscapeLocal.length && wsEscapeLocal[0] > stack.length) {
         wsEscapeLocal.shift()
       }
 
       const head = stack[0]
       const wsEscape = wsEscapeGlobal || wsEscapeLocal.length
+
+      // Escape sequences
+      if (char === '\\') {
+        // Expand \h shorthand
+        if (input[i + 1] === 'h') {
+          if (head === '[') {
+            output += ' \\t'
+          }
+          else {
+            output += '[ \\t]'
+          }
+          i += 2
+          continue
+        }
+        output += char + input[i + 1]
+        i += 2
+        continue
+      }
 
       // Comments
       if (char === '#' && wsEscape && input[i - 1].match(/\s/) && head !== '[') {

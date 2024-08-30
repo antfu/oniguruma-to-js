@@ -6,7 +6,7 @@ const TABLE_POSIX = /* @__PURE__ */ {
   ascii: '\x00-\x7F',
   blank: ' \\t',
   cntrl: '\x00-\x1F\x7F',
-  digit: '0-9',
+  digit: '\\d',
   graph: '!-~',
   lower: 'a-z',
   print: ' -~',

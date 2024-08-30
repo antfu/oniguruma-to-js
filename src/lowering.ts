@@ -17,6 +17,8 @@ const TABLE_POSIX = /* @__PURE__ */ {
   word: '\\w',
 } as Record<string, string>
 
+const KNOWN_FLAGS = /* @__PURE__ */ new Set('gimsuyx')
+
 /**
  * Read the Oniguruma regex, lower syntaxes and return a more JavaScript-friendly regex.
  */
@@ -74,17 +76,32 @@ export function syntaxLowering(input: string): string {
             continue
           }
 
-          if (input[i + 2] === 'x') {
-            if (input[i + 3] === ')') {
-              i += 4
-              wsEscapeGlobal = true
+          // Extract flags
+          if (KNOWN_FLAGS.has(input[i + 2])) {
+            let end = i + 3
+            for (; end < input.length; end++) {
+              if (!KNOWN_FLAGS.has(input[end]))
+                break
+            }
+            const flags = input.slice(i + 2, end)
+            const remainFlags = [...flags].filter(x => x !== 'x').join('')
+            if (input[end] === ')') {
+              i = end + 1
+              if (flags.includes('x')) {
+                wsEscapeGlobal = true
+              }
+              if (remainFlags.length) {
+                output += `(?${remainFlags})`
+              }
               continue
             }
-            else if (input[i + 3] === ':') {
-              i += 4
+            else if (input[end] === ':') {
+              i = end + 1
               stack.unshift(char)
-              wsEscapeLocal.unshift(stack.length)
-              output += '(?:'
+              if (flags.includes('x')) {
+                wsEscapeLocal.unshift(stack.length)
+              }
+              output += `(?${remainFlags}:`
               continue
             }
           }

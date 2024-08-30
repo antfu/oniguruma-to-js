@@ -72,7 +72,7 @@ export function construct(
 
   if (flagSet.has('x')) {
     throw new RegExpConversionError(
-      'JavaScript does not support extended mode (x flag), , you might want to run syntaxLowering() first',
+      'JavaScript does not support extended mode (x flag), you might want to run syntaxLowering() first',
       { pattern: original, converted: pattern },
     )
   }

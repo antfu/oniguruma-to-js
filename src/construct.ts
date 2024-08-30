@@ -12,6 +12,15 @@ export interface ConstructOptions {
    * Note that some Oniguruma patterns might alter the flags.
    */
   flags?: string | string[]
+
+  /**
+   * Ignore contiguous anchors (\G) in the pattern.
+   *
+   * There is no equivalent in JavaScript
+   *
+   * @default false
+   */
+  ignoreContiguousAnchors?: boolean
 }
 
 /**
@@ -44,6 +53,11 @@ export function construct(
   }
 
   const flagSet = new Set<string>(Array.isArray(flags) ? flags : flags.split(''))
+
+  if (options.ignoreContiguousAnchors) {
+    pattern = pattern
+      .replace(/\\G/g, '')
+  }
 
   pattern = pattern
     // `\A` is `^` in JavaScript

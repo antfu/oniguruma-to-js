@@ -26,3 +26,12 @@ it('unicode with atomic group', () => {
   expect(onigurumaToRegexp('(-?(?!\\d)(?>[\\w-]|[^\\x00-\\x7F]|\\\\(?:[0-9a-fA-F]{1,6}|.))+)\\s*(?=[~|^\\]$*=]|/\\*)').source)
     .toMatchInlineSnapshot(`"(-?(?!\\d)(?:[\\w-]|[^\\x00-\\x7F]|\\\\(?:[0-9a-fA-F]{1,6}|.))+)\\s*(?=[~|^\\]$*=]|\\/\\*)"`)
 })
+
+it('\\G', () => {
+  expect(
+    onigurumaToRegexp('\\G((?=https?://)(?:[^|}\\s*]|\\*[/])+)(\\|)?', {
+      ignoreContiguousAnchors: true,
+    }).source,
+  )
+    .toMatchInlineSnapshot(`"((?=https?:\\/\\/)(?:[^|}\\s*]|\\*[/])+)(\\|)?"`)
+})

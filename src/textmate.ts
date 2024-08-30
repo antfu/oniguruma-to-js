@@ -31,6 +31,8 @@ export function loweringTextmateGrammar<T extends TextmateGrammarBasic>(
   }
 
   function traverse(a: any): void {
+    if (!a)
+      return
     if (a.match)
       a.match = handle(a.match)
     if (a.begin)
@@ -42,13 +44,12 @@ export function loweringTextmateGrammar<T extends TextmateGrammarBasic>(
         traverse(j)
       })
     }
+    Object.values(a.repository || {}).forEach((j: any) => {
+      traverse(j)
+    })
   }
 
-  if (clone.patterns)
-    clone.patterns.forEach(traverse)
-  Object.values(clone.repository || {}).forEach((i: any) => {
-    traverse(i)
-  })
+  traverse(clone)
 
   return clone
 }

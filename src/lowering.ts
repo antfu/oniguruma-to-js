@@ -46,6 +46,13 @@ export interface SyntaxLoweringOptions {
    * @default false
    */
   removeAtomicGroup?: boolean
+
+  /**
+   * Convert `\h` and `\H` to `[0-9A-Fa-f]` and `[^0-9A-Fa-f]` respectively.
+   *
+   * @default false
+   */
+  convertHexDigitsShorthand?: boolean
 }
 
 export interface SyntaxLoweringResult {
@@ -64,6 +71,7 @@ export function syntaxLowering(
     preserveFlags = false,
     removePossessiveQuantifier = false,
     removeAtomicGroup = false,
+    convertHexDigitsShorthand = false,
   } = options
 
   let output = ''
@@ -89,30 +97,32 @@ export function syntaxLowering(
 
       // Escape sequences
       if (char === '\\') {
-        // Expand \h shorthands
-        if (input[i + 1] === 'h') {
-          const body = `0-9A-Fa-f`
-          if (head === '[') {
-            output += body
+        // Expand \h and \H
+        if (convertHexDigitsShorthand) {
+          if (input[i + 1] === 'h') {
+            const body = `0-9A-Fa-f`
+            if (head === '[') {
+              output += body
+            }
+            else {
+              output += `[${body}]`
+            }
+            i += 2
+            continue
           }
-          else {
-            output += `[${body}]`
+          if (input[i + 1] === 'H') {
+            if (head === '[') {
+              throw new RegExpConversionError(
+                'Expending \\H in character class is not supported',
+                { pattern: input, converted: output, cursor: i },
+              )
+            }
+            else {
+              output += `[^0-9A-Fa-f]`
+            }
+            i += 2
+            continue
           }
-          i += 2
-          continue
-        }
-        if (input[i + 1] === 'H') {
-          if (head === '[') {
-            throw new RegExpConversionError(
-              'Expending \\H in character class is not supported',
-              { pattern: input, converted: output, cursor: i },
-            )
-          }
-          else {
-            output += `[^0-9A-Fa-f]`
-          }
-          i += 2
-          continue
         }
         output += char + input[i + 1]
         i += 2

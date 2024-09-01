@@ -17,6 +17,7 @@ export function onigurumaToRegexp(
   } = syntaxLowering(pattern, {
     removePossessiveQuantifier: true,
     removeAtomicGroup: true,
+    convertHexDigitsShorthand: true,
     ...options,
   })
 

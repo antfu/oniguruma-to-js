@@ -114,7 +114,7 @@ it('lowering mixed flags', () => {
 })
 
 it('lowering \\h', () => {
-  expect(syntaxLowering('(?x)\\h [\\h\\w] \\H'))
+  expect(syntaxLowering('(?x)\\h [\\h\\w] \\H', { convertHexDigitsShorthand: true }))
     .toMatchInlineSnapshot(`
       {
         "flags": "",

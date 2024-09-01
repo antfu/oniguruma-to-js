@@ -14,7 +14,7 @@ it('with flags', () => {
 it('unicode case', () => {
   const regex = onigurumaToRegexp('\\s*(--)((?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))+)')
   expect(regex.source)
-    .toMatchInlineSnapshot(`"\\s*(--)((?:[[-\\w][^\\u0000-\\u007F]]|(?:\\\\[ \\t]{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f \\t]))+)"`)
+    .toMatchInlineSnapshot(`"\\s*(--)((?:[[-\\w][^\\u0000-\\u007F]]|(?:\\\\[0-9A-Fa-f]{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f0-9A-Fa-f]))+)"`)
 })
 
 it('*+', () => {

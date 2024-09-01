@@ -1,6 +1,6 @@
 import { RegExpConversionError } from './error'
 
-const TABLE_POSIX = /* @__PURE__ */ {
+const TABLE_POSIX = {
   alnum: '0-9A-Za-z',
   alpha: 'A-Za-z',
   ascii: '\x00-\x7F',
@@ -89,13 +89,27 @@ export function syntaxLowering(
 
       // Escape sequences
       if (char === '\\') {
-        // Expand \h shorthand
+        // Expand \h shorthands
         if (input[i + 1] === 'h') {
+          const body = `0-9A-Fa-f`
           if (head === '[') {
-            output += ' \\t'
+            output += body
           }
           else {
-            output += '[ \\t]'
+            output += `[${body}]`
+          }
+          i += 2
+          continue
+        }
+        if (input[i + 1] === 'H') {
+          if (head === '[') {
+            throw new RegExpConversionError(
+              'Expending \\H in character class is not supported',
+              { pattern: input, converted: output, cursor: i },
+            )
+          }
+          else {
+            output += `[^0-9A-Fa-f]`
           }
           i += 2
           continue

@@ -6,7 +6,7 @@
 [![JSDocs][jsdocs-src]][jsdocs-href]
 [![License][license-src]][license-href]
 
-Covert Oniguruma-flavor Regexp to JavaScript native RegExp.
+Convert Oniguruma-flavor Regexp to JavaScript native RegExp.
 
 Supported Oniguruma features:
 
@@ -54,7 +54,7 @@ import grammar from '../path/to/grammars/json.json'
 const lowered = loweringTextmateGrammar(grammar)
 ```
 
-Note this function will not guarantee the correctness of the result, you many need to verify the result manually.
+Note this function will not guarantee the correctness of the result, you may need to verify the result manually.
 
 ## Sponsors
 

@@ -93,7 +93,7 @@ export function syntaxLowering(
       }
 
       const head = stack[0]
-      const wsEscape = freeSpacingGlobal || freeSpacingLocal.length
+      const freeSpacing = freeSpacingGlobal || freeSpacingLocal.length
 
       // Escape sequences
       if (char === '\\') {
@@ -130,7 +130,7 @@ export function syntaxLowering(
       }
 
       // Comments
-      if (char === '#' && wsEscape && input[i - 1].match(/\s/) && head !== '[') {
+      if (char === '#' && freeSpacing && input[i - 1].match(/\s/) && head !== '[') {
         for (let j = i + 1; j <= input.length; j++) {
           if (input[j] === '\n' || j === input.length) {
             i = j
@@ -296,7 +296,7 @@ export function syntaxLowering(
       }
 
       // Ignore whitespace if Free-spacing mode is enabled
-      if (!(wsEscape && head !== '[' && char.match(/\s/))) {
+      if (!(freeSpacing && head !== '[' && char.match(/\s/))) {
         // Literals
         output += char
       }

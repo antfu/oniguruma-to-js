@@ -55,23 +55,32 @@
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks && git submodule update --init --recursive"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.0.0",
     "@antfu/ni": "^0.23.0",
     "@antfu/utils": "^0.7.10",
+    "@shikijs/core": "^1.16.1",
+    "@shikijs/vscode-textmate": "^9.2.0",
     "@types/node": "^22.5.1",
     "bumpp": "^9.5.2",
     "eslint": "^9.9.1",
     "esno": "^4.7.0",
+    "fast-glob": "^3.3.2",
     "lint-staged": "^15.2.9",
     "pnpm": "^9.9.0",
+    "shiki": "^1.16.1",
     "simple-git-hooks": "^2.11.1",
     "typescript": "^5.5.4",
     "unbuild": "^2.0.0",
     "vite": "^5.4.2",
     "vitest": "^2.0.5"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@shikijs/core": "patches/@shikijs__core.patch"
+    }
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

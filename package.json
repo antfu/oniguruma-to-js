@@ -27,6 +27,10 @@
     "./textmate": {
       "import": "./dist/textmate.mjs",
       "require": "./dist/textmate.cjs"
+    },
+    "./detect": {
+      "import": "./dist/detect.mjs",
+      "require": "./dist/detect.cjs"
     }
   },
   "main": "./dist/index.mjs",

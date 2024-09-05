@@ -18,6 +18,7 @@ export function onigurumaToRegexp(
     removePossessiveQuantifier: true,
     removeAtomicGroup: true,
     convertHexDigitsShorthand: true,
+    convertUnicodeCategory: true,
     ...options,
   })
 

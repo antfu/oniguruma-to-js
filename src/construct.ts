@@ -59,9 +59,14 @@ export function construct(
       .replace(/\\G/g, '')
   }
 
+  if (pattern.includes('\\p{'))
+    flagSet.add('u')
+
   pattern = pattern
     // `\A` is `^` in JavaScript
     .replace(/\\A/g, '^')
+    // `\Z` is `$` in JavaScript
+    .replace(/\\Z/gi, '$')
     // `\x{00}` is `\u0000` in JavaScript
     .replace(/\\x\{([^}]*)\}/g, (m, hex) => `\\u${hex.padStart(4, '0')}`)
     // Extract flags

@@ -1,7 +1,7 @@
 {
   "name": "oniguruma-to-js",
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "packageManager": "pnpm@9.9.0",
   "description": "Covert Oniguruma-flavor Regexp to JavaScript native RegExp",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
@@ -27,6 +27,10 @@
     "./textmate": {
       "import": "./dist/textmate.mjs",
       "require": "./dist/textmate.cjs"
+    },
+    "./detect": {
+      "import": "./dist/detect.mjs",
+      "require": "./dist/detect.cjs"
     }
   },
   "main": "./dist/index.mjs",
@@ -58,23 +62,23 @@
     "prepare": "simple-git-hooks && git submodule update --init --recursive"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.0.0",
+    "@antfu/eslint-config": "^3.2.0",
     "@antfu/ni": "^0.23.0",
     "@antfu/utils": "^0.7.10",
-    "@shikijs/core": "^1.16.1",
+    "@shikijs/core": "^1.16.2",
     "@shikijs/vscode-textmate": "^9.2.0",
-    "@types/node": "^22.5.1",
+    "@types/node": "^22.5.4",
     "bumpp": "^9.5.2",
     "eslint": "^9.9.1",
     "esno": "^4.7.0",
     "fast-glob": "^3.3.2",
-    "lint-staged": "^15.2.9",
+    "lint-staged": "^15.2.10",
     "pnpm": "^9.9.0",
-    "shiki": "^1.16.1",
+    "shiki": "^1.16.2",
     "simple-git-hooks": "^2.11.1",
     "typescript": "^5.5.4",
     "unbuild": "^2.0.0",
-    "vite": "^5.4.2",
+    "vite": "^5.4.3",
     "vitest": "^2.0.5"
   },
   "pnpm": {

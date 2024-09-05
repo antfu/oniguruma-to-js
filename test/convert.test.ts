@@ -35,3 +35,28 @@ it('\\G', () => {
   )
     .toMatchInlineSnapshot(`"((?=https?:\\/\\/)(?:[^|}\\s*]|\\*[/])+)(\\|)?"`)
 })
+
+it('\\Z', () => {
+  expect(onigurumaToRegexp('((?<!\\w)alignas(?!\\w))((?:(?:(?:\\s*+(\\/\\*)((?:[^\\*]++|\\*+(?!\\/))*+(\\*\\/))\\s*+)+)|(?:\\s++)|(?<=\\W)|(?=\\W)|^|(?:\\n?$)|\\A|\\Z))(\\()').source)
+    .toMatchInlineSnapshot(`"((?<!\\w)alignas(?!\\w))((?:(?:(?:\\s*(\\/\\*)((?:[^\\*]+|\\*(?!\\/))*(\\*\\/))\\s*)+)|(?:\\s+)|(?<=\\W)|(?=\\W)|^|(?:\\n?$)|^|$))(\\()"`)
+})
+
+it('\\p{*}', () => {
+  expect(onigurumaToRegexp('^\\p{Blank}*$').source)
+    .toMatchInlineSnapshot(`"^[\\s]*$"`)
+
+  expect(onigurumaToRegexp('(?<!\\\\)(\\[{3})([\\p{Word}:][\\p{Word}:.-]*?)(\\]{3})').source)
+    .toMatchInlineSnapshot(`"(?<!\\\\)(\\[{3})([\\w:][\\w:.-]*?)(\\]{3})"`)
+
+  expect(onigurumaToRegexp('(\\\\)(?:[cgl]_+[_\\p{Alphabetic}@]+_[a-z]+|[qs]_[_\\p{Alphabetic}@]+[\\p{Alphabetic}@])').source)
+    .toMatchInlineSnapshot(`"(\\\\)(?:[cgl]_+[_A-Za-z@]+_[a-z]+|[qs]_[_A-Za-z@]+[A-Za-z@])"`)
+})
+
+it('invalid escape', () => {
+  expect(onigurumaToRegexp('([\\p{L}\\.\\-\\_\\+\\=\\>\\<\\!\\?\\*][\\w\\.\\-\\_\\:\\+\\=\\>\\<\\!\\?\\*\\d]*)/').source)
+    .toMatchInlineSnapshot(`"([\\p{L}\\.\\-_+=><!?\\*][\\w\\.\\-_:+=><!?\\*\\d]*)\\/"`)
+
+  // TODO: fix this
+  // expect(onigurumaToRegexp('(?:^|\\G)[\\t ]*(\\[)((?:[^\\[\\\\\\]]|\\\\[\\[\\\\\\]]?)+?)(\\])(:)[ \\t]*(?:(<)((?:[^\\n<\\\\>]|\\\\[<\\\\>]?)*)(>)|(\\g<destination_raw>))(?:[\\t ]+(?:(")((?:[^"\\\\]|\\\\["\\\\]?)*)(")|(\')((?:[^\'\\\\]|\\\\[\'\\\\]?)*)(\')|(\\()((?:[^\\)\\\\]|\\\\[\\)\\\\]?)*)(\\))))?$(?<destination_raw>(?!\\<)(?:(?:[^\\p{Cc}\\ \\\\\\(\\)]|\\\\[\\(\\)\\\\]?)|\\(\\g<destination_raw>*\\))+){0}').source)
+  //   .toMatchInlineSnapshot()
+})

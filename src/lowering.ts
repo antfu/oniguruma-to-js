@@ -1,5 +1,8 @@
 import { RegExpConversionError } from './error'
 
+const UNNECESSARY_ESCAPE_CHAR_CLASS = new Set('!?:=+$(){}_><# ')
+const UNNECESSARY_ESCAPE = new Set('-!:=_>< ')
+
 const TABLE_POSIX = {
   alnum: '0-9A-Za-z',
   alpha: 'A-Za-z',
@@ -14,6 +17,17 @@ const TABLE_POSIX = {
   space: '\\s',
   upper: 'A-Z',
   xdigit: '0-9A-Fa-f',
+  word: '\\w',
+} as Record<string, string>
+
+// @keep-sorted
+const TABLE_SLASH_P = {
+  alnum: '0-9A-Za-z',
+  alpha: 'A-Za-z',
+  alphabetic: 'A-Za-z',
+  blank: '\\s',
+  greek: '\\p{Script=Greek}',
+  print: '\\p{L}\\p{N}\\p{P}\\p{S}\\p{Zs}',
   word: '\\w',
 } as Record<string, string>
 
@@ -53,6 +67,13 @@ export interface SyntaxLoweringOptions {
    * @default false
    */
   convertHexDigitsShorthand?: boolean
+
+  /**
+   * Convert `\p{...}` to `[...]` that are not supported in JavaScript.
+   *
+   * @default false
+   */
+  convertUnicodeCategory?: boolean
 }
 
 export interface SyntaxLoweringResult {
@@ -72,6 +93,7 @@ export function syntaxLowering(
     removePossessiveQuantifier = false,
     removeAtomicGroup = false,
     convertHexDigitsShorthand = false,
+    convertUnicodeCategory = false,
   } = options
 
   let output = ''
@@ -123,6 +145,37 @@ export function syntaxLowering(
             i += 2
             continue
           }
+        }
+        if (convertUnicodeCategory && input[i + 1] === 'p' && input[i + 2] === '{') {
+          const end = input.indexOf('}', i + 3)
+          if (end === -1) {
+            throw new RegExpConversionError(
+              'Unmatched \\p{...}',
+              { pattern: input, converted: output, cursor: i },
+            )
+          }
+          const name = input.slice(i + 3, end)
+          const resolved = TABLE_SLASH_P[name.toLowerCase()]
+          if (resolved) {
+            if (head === '[') {
+              output += resolved
+            }
+            else {
+              output += `[${resolved}]`
+            }
+            i = end + 1
+            continue
+          }
+        }
+        if (head === '[' && UNNECESSARY_ESCAPE_CHAR_CLASS.has(input[i + 1])) {
+          output += input[i + 1]
+          i += 2
+          continue
+        }
+        if (head !== '[' && UNNECESSARY_ESCAPE.has(input[i + 1])) {
+          output += input[i + 1]
+          i += 2
+          continue
         }
         output += char + input[i + 1]
         i += 2

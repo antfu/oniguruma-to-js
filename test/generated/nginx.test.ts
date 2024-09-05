@@ -16,12 +16,7 @@ it('expected match: 0', () => {
       ],
     ]
   `)
-  expect(indices).toMatchObject([
-    [
-      35,
-      36,
-    ],
-  ])
+  expect(indices).toMatchObject([[35, 36]])
 })
 
 it('expected match: 1', () => {
@@ -39,12 +34,7 @@ it('expected match: 1', () => {
       ],
     ]
   `)
-  expect(indices).toMatchObject([
-    [
-      43,
-      44,
-    ],
-  ])
+  expect(indices).toMatchObject([[43, 44]])
 })
 
 it('expected match: 2', () => {
@@ -74,24 +64,7 @@ it('expected match: 2', () => {
       ],
     ]
   `)
-  expect(indices).toMatchObject([
-    [
-      25,
-      35,
-    ],
-    [
-      26,
-      32,
-    ],
-    [
-      32,
-      33,
-    ],
-    [
-      33,
-      34,
-    ],
-  ])
+  expect(indices).toMatchObject([[25, 35], [26, 32], [32, 33], [33, 34]])
 })
 
 it('expected match: 3', () => {
@@ -109,10 +82,5 @@ it('expected match: 3', () => {
       ],
     ]
   `)
-  expect(indices).toMatchObject([
-    [
-      27,
-      28,
-    ],
-  ])
+  expect(indices).toMatchObject([[27, 28]])
 })

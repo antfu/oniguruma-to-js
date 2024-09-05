@@ -59,6 +59,9 @@ interface ExpectedMatch {
 }
 
 export async function run(): Promise<void> {
+  await fs.rm(new URL('../test/generated', import.meta.url), { recursive: true, force: true })
+  await fs.mkdir(new URL('../test/generated', import.meta.url), { recursive: true })
+
   await loadWasm(import('@shikijs/core/wasm-inlined'))
 
   const files = await fg('*.json', {
@@ -118,7 +121,6 @@ export async function run(): Promise<void> {
             const indexJs = resultJs?.index
             if (
               (indexWasm == null && indexJs != null)
-              || (indexWasm != null && indexJs != null && indexWasm > indexJs)
             ) {
               unexpectedMatches.push({
                 input,
@@ -127,8 +129,7 @@ export async function run(): Promise<void> {
               })
             }
             else if (
-              (indexWasm != null && indexJs == null)
-              || (indexWasm != null && indexJs != null && indexWasm < indexJs)
+              indexWasm != null && indexWasm !== indexJs
             ) {
               expectedMatches.push({
                 input,
@@ -193,7 +194,7 @@ export async function run(): Promise<void> {
         `  )`,
         `  expect.soft(regex.source).toMatchInlineSnapshot()`,
         `  expect.soft(indices).toMatchInlineSnapshot()`,
-        `  expect(indices).toMatchObject(${JSON.stringify(ex.indices, null, 2)})`,
+        `  expect(indices).toMatchObject(${JSON.stringify(ex.indices)})`,
         `})`,
         '',
       )

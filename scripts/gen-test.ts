@@ -1,7 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import fs from 'node:fs/promises'
 import { basename } from 'node:path'
-import test from 'node:test'
 import fg from 'fast-glob'
 import type { RegexEngine } from '@shikijs/core'
 import { createHighlighterCore, createJavaScriptRegexEngine, createWasmOnigEngine, loadWasm } from '@shikijs/core'
@@ -17,35 +16,6 @@ export interface Instance {
 export interface Executions {
   args: [str: string, start: number, options?: any]
   result: IOnigMatch | null
-}
-
-function createEngineWrapper(engine: RegexEngine): RegexEngine & { instances: Instance[] } {
-  const instances: Instance[] = []
-
-  return {
-    instances,
-    createScanner(patterns) {
-      const scanner = engine.createScanner(patterns)
-      const instance: Instance = {
-        constractor: [patterns],
-        executions: [],
-      }
-      instances.push(instance)
-      return {
-        findNextMatchSync(...args) {
-          const result = scanner.findNextMatchSync(...args)
-          instance.executions.push({
-            args: [typeof args[0] === 'string' ? args[0] : args[0].content, ...args.slice(1) as any] as any,
-            result,
-          })
-          return result
-        },
-      }
-    },
-    createString(s) {
-      return engine.createString(s)
-    },
-  }
 }
 
 export function getPatterns(grammar: any): Set<string> {
@@ -75,6 +45,19 @@ export function getPatterns(grammar: any): Set<string> {
   return patterns
 }
 
+interface UnexpectedMatch {
+  input: string
+  regex: string
+  startIndex: number
+}
+
+interface ExpectedMatch {
+  input: string
+  regex: string
+  startIndex: number
+  indices: [number, number][]
+}
+
 export async function run(): Promise<void> {
   await loadWasm(import('@shikijs/core/wasm-inlined'))
 
@@ -85,8 +68,7 @@ export async function run(): Promise<void> {
     .then(files => Promise.all(files.sort().map(async (f) => {
       const content = JSON.parse(await fs.readFile(f, 'utf-8'))
       const name = basename(f, '.json')
-      const sample = await fs.readFile(new URL(`../textmate-grammars-themes/samples/${name}.sample`, import.meta.url), 'utf-8')
-        .catch(() => '')
+      const sample = await fs.readFile(new URL(`../textmate-grammars-themes/samples/${name}.sample`, import.meta.url), 'utf-8').catch(() => '')
       return {
         path: f,
         name,
@@ -100,128 +82,125 @@ export async function run(): Promise<void> {
       console.log('No sample:', file.name)
       continue
     }
-    const engineJS = createEngineWrapper(createJavaScriptRegexEngine({
+    const engineWasm = await createWasmOnigEngine()
+    const engineJs = createJavaScriptRegexEngine({
       regexConstructor,
-    }))
-    const engineWASM = createEngineWrapper(await createWasmOnigEngine())
+      forgiving: true,
+    })
+
+    const instances: Instance[] = []
+
+    const unexpectedMatches: UnexpectedMatch[] = []
+    const expectedMatches: ExpectedMatch[] = []
+
+    const engine: RegexEngine = {
+      createScanner(patterns) {
+        const scannerWasm = engineWasm.createScanner(patterns)
+        const scannerJS = engineJs.createScanner(patterns)
+        const instance: Instance = {
+          constractor: [patterns],
+          executions: [],
+        }
+        instances.push(instance)
+        return {
+          findNextMatchSync(...args) {
+            const resultWasm = scannerWasm.findNextMatchSync(...args)
+            let resultJs: IOnigMatch | null = null
+            try {
+              resultJs = scannerJS.findNextMatchSync(...args)
+            }
+            catch (e) {
+              console.error(e)
+            }
+            const input = typeof args[0] === 'string' ? args[0] : args[0].content
+            const startIndex = args[1]
+            const indexWasm = resultWasm?.index
+            const indexJs = resultJs?.index
+            if (
+              (indexWasm == null && indexJs != null)
+              || (indexWasm != null && indexJs != null && indexWasm > indexJs)
+            ) {
+              unexpectedMatches.push({
+                input,
+                startIndex,
+                regex: patterns[indexJs],
+              })
+            }
+            else if (
+              (indexWasm != null && indexJs == null)
+              || (indexWasm != null && indexJs != null && indexWasm < indexJs)
+            ) {
+              expectedMatches.push({
+                input,
+                startIndex,
+                regex: patterns[indexWasm],
+                indices: resultWasm?.captureIndices.map(i => [i.start, i.end]) || [],
+              })
+            }
+            return resultWasm
+          },
+        }
+      },
+      createString(s) {
+        return engineWasm.createString(s)
+      },
+    }
+
+    const shiki = await createHighlighterCore({
+      langs: [file.content],
+      themes: [vitesseDark],
+      engine,
+    })
+    shiki.codeToTokensBase(file.sample, { lang: file.name, theme: 'vitesse-dark' })
+    shiki.dispose()
+
+    if (!unexpectedMatches.length && !expectedMatches.length) {
+      continue
+    }
 
     const testCode = [
       `import { expect, it } from 'vitest'`,
-      `import { execute, regexConstructor } from '../_execute'`,
+      `import { execute } from '../_execute'`,
       '',
     ]
 
-    let hasMismatch = false
-
-    const patterns = getPatterns(file.content)
-    const mismatchPatterns = [...patterns].filter((pattern) => {
-      try {
-        regexConstructor(pattern)
-        return false
-      }
-      catch {
-        return true
-      }
+    unexpectedMatches.forEach((un, i) => {
+      testCode.push(
+        '',
+        `it('unexpected match: ${i}', () => {`,
+        `  const { match, indices, regex } = execute(`,
+        `    ${JSON.stringify(un.regex)},`,
+        `    ${JSON.stringify(un.input)},`,
+        `    ${JSON.stringify(un.startIndex)},`,
+        `  )`,
+        `  expect.soft(regex.source).toMatchInlineSnapshot()`,
+        `  expect.soft(match).toMatchInlineSnapshot()`,
+        `  expect.soft(indices).toMatchInlineSnapshot()`,
+        `  expect(match).toBe(null)`,
+        `})`,
+        '',
+      )
     })
 
-    if (mismatchPatterns.length) {
-      hasMismatch = true
-      mismatchPatterns.forEach((pattern, idx) => {
-        testCode.push(
-          `it('should parse ${idx}', () => {`,
-          `  const regex = regexConstructor(${JSON.stringify(pattern)})`,
-          `  expect.soft(regex.toString())`,
-          `    .toMatchInlineSnapshot()`,
-          '})',
-          '',
-        )
-      })
-    }
-    else {
-      const shiki1 = await createHighlighterCore({
-        langs: [file.content],
-        themes: [vitesseDark],
-        engine: engineWASM,
-      })
-      const shiki2 = await createHighlighterCore({
-        langs: [file.content],
-        themes: [vitesseDark],
-        engine: engineJS,
-      })
+    expectedMatches.forEach((ex, i) => {
+      testCode.push(
+        '',
+        `it('expected match: ${i}', () => {`,
+        `  const { indices, regex } = execute(`,
+        `    ${JSON.stringify(ex.regex)},`,
+        `    ${JSON.stringify(ex.input)},`,
+        `    ${JSON.stringify(ex.startIndex)},`,
+        `  )`,
+        `  expect.soft(regex.source).toMatchInlineSnapshot()`,
+        `  expect.soft(indices).toMatchInlineSnapshot()`,
+        `  expect(indices).toMatchObject(${JSON.stringify(ex.indices, null, 2)})`,
+        `})`,
+        '',
+      )
+    })
 
-      shiki1.codeToTokensBase(file.sample, { lang: file.name, theme: 'vitesse-dark' })
-      try {
-        shiki2.codeToTokensBase(file.sample, { lang: file.name, theme: 'vitesse-dark' })
-      }
-      catch (e) {
-        console.log('Error:', file.name, e)
-      }
-
-      shiki1.dispose()
-      shiki2.dispose()
-
-      for (let i = 0; i < engineWASM.instances.length; i++) {
-        const instance = engineWASM.instances[i]
-        for (let j = 0; j < instance.executions.length; j++) {
-          const executionWASM = instance.executions?.[j]
-          const executionJS = engineJS.instances?.[i]?.executions?.[j]
-          const indexWasm = executionWASM.result?.index ?? -1
-          const indexJS = executionJS?.result?.index ?? -1
-          if (
-            (executionWASM.result == null && executionJS?.result != null)
-            || (indexJS < indexWasm && indexJS !== -1)
-          ) {
-            testCode.push(
-              `it("should not match", () => {`,
-              `  const { match, indices, regex } = execute(`,
-              `    ${JSON.stringify(instance.constractor[0][indexJS])},`,
-              `    ${JSON.stringify(executionJS.args[0])},`,
-              `    ${JSON.stringify(executionJS.args[1])},`,
-              `  )`,
-              '',
-              `  expect.soft(regex.toString())`,
-              `    .toMatchInlineSnapshot()`,
-              ``,
-              `  expect.soft(match)`,
-              `    .toMatchInlineSnapshot()`,
-              '',
-              '  expect(match).toEqual(null)',
-              '})',
-            )
-            hasMismatch = true
-            break
-          }
-          if (executionWASM.result?.index !== executionJS?.result?.index) {
-            testCode.push(
-              `it("mismatch", () => {`,
-              `  const { match, indices, regex } = execute(`,
-              `    ${JSON.stringify(instance.constractor[0][executionWASM.result!.index!])},`,
-              `    ${JSON.stringify(executionWASM.args[0])},`,
-              `    ${JSON.stringify(executionWASM.args[1])},`,
-              `  )`,
-              '',
-              `  expect.soft(regex.toString())`,
-              `    .toMatchInlineSnapshot()`,
-              ``,
-              `  expect.soft(match)`,
-              `    .toMatchInlineSnapshot()`,
-              '',
-              `  expect(indices).toEqual(${JSON.stringify(executionWASM.result?.captureIndices, null, 2)})`,
-              `})`,
-            )
-            console.log('Mismatch:', file.name, executionWASM, executionJS)
-            hasMismatch = true
-            break
-          }
-        }
-        if (hasMismatch)
-          break
-      }
-    }
-    if (hasMismatch) {
-      await fs.writeFile(new URL(`../test/generated/${file.name}.test.ts`, import.meta.url), testCode.join('\n'))
-      continue
-    }
+    await fs.writeFile(new URL(`../test/generated/${file.name}.test.ts`, import.meta.url), testCode.join('\n'))
+    continue
   }
 }
 

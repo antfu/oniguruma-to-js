@@ -1,77 +1,170 @@
 import { expect, it } from 'vitest'
-import { execute, regexConstructor } from '../_execute'
+import { execute } from '../_execute'
 
-it("mismatch", () => {
+it('unexpected match: 0', () => {
   const { match, indices, regex } = execute(
-    "([0-9]{4})([\\-|/])([0-9]{2})([\\-|/])([0-9]{2})\\s*(txn|[*!&#?%PSTCURM])\\s*(\".*?\")?\\s*(\".*?\")?",
-    "2012-11-03 * \"Transfer to account in Canada\"\n",
-    0,
+    '(?=(^\\s*$|^\\S))',
+    '2012-11-03 * "Transfer to pay credit card"\n',
+    43,
   )
-
-  expect.soft(regex.toString())
-    .toMatchInlineSnapshot(`"/([0-9]{4})([\\-|/])([0-9]{2})([\\-|/])([0-9]{2})\\s*(txn|[*!&#?%PSTCURM])\\s*(".*?")?\\s*(".*?")?/dgm"`)
-
-  expect.soft(match)
-    .toMatchInlineSnapshot(`
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S))"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
       [
-        "2012-11-03 * "Transfer to account in Canada"
-      ",
-        "2012",
-        "-",
-        "11",
-        "-",
-        "03",
-        "*",
-        ""Transfer to account in Canada"",
-        undefined,
-      ]
-    `)
+        43,
+        43,
+      ],
+      [
+        43,
+        43,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
 
-  expect(indices).toEqual([
-  {
-    "start": 0,
-    "end": 45,
-    "length": 45
-  },
-  {
-    "start": 0,
-    "end": 4,
-    "length": 4
-  },
-  {
-    "start": 4,
-    "end": 5,
-    "length": 1
-  },
-  {
-    "start": 5,
-    "end": 7,
-    "length": 2
-  },
-  {
-    "start": 7,
-    "end": 8,
-    "length": 1
-  },
-  {
-    "start": 8,
-    "end": 10,
-    "length": 2
-  },
-  {
-    "start": 11,
-    "end": 12,
-    "length": 1
-  },
-  {
-    "start": 13,
-    "end": 44,
-    "length": 31
-  },
-  {
-    "start": 4294967295,
-    "end": 4294967295,
-    "length": 0
-  }
-])
+it('unexpected match: 1', () => {
+  const { match, indices, regex } = execute(
+    '(?=(^\\s*$|^\\S|^\\s*[A-Z]))',
+    '  Assets:MyBank:Checking            -400.00 USD\n',
+    47,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S|^\\s*[A-Z]))"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        48,
+        48,
+      ],
+      [
+        48,
+        48,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 2', () => {
+  const { match, indices, regex } = execute(
+    '(?=(^\\s*$|^\\S|^\\s*[A-Z]))',
+    '  Liabilities:CreditCard             400.00 USD\n',
+    47,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S|^\\s*[A-Z]))"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        48,
+        48,
+      ],
+      [
+        48,
+        48,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 3', () => {
+  const { match, indices, regex } = execute(
+    '(?=(^\\s*$|^\\S))',
+    '2012-11-03 * "Transfer to account in Canada"\n',
+    45,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S))"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        45,
+        45,
+      ],
+      [
+        45,
+        45,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 4', () => {
+  const { match, indices, regex } = execute(
+    '(?=(^\\s*$|^\\S|^\\s*[A-Z]))',
+    '  Assets:MyBank:Checking            -400.00 USD @ 1.09 CAD\n',
+    58,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S|^\\s*[A-Z]))"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        59,
+        59,
+      ],
+      [
+        59,
+        59,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 5', () => {
+  const { match, indices, regex } = execute(
+    '(?=(^\\s*$|^\\S|^\\s*[A-Z]))',
+    '  Assets:FR:SocGen:Checking          436.01 CAD\n',
+    47,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S|^\\s*[A-Z]))"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        48,
+        48,
+      ],
+      [
+        48,
+        48,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
 })

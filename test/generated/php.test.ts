@@ -1,34 +1,94 @@
 import { expect, it } from 'vitest'
-import { execute, regexConstructor } from '../_execute'
+import { execute } from '../_execute'
 
-it("mismatch", () => {
+it('unexpected match: 0', () => {
   const { match, indices, regex } = execute(
-    "(^\\s+)?(?=//)",
-    "// From https://github.com/laravel/laravel/blob/10.x/app/Console/Kernel.php\n",
+    '^(?!\\s*\\*).*?(?:(?=\\*\\/)|$\\n?)',
+    '    /**\n',
+    7,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^(?!\\s*\\*).*?(?:(?=\\*\\/)|$\\n?)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 1', () => {
+  const { match, indices, regex } = execute(
+    '^(?!\\s*\\*).*?(?:(?=\\*\\/)|$\\n?)',
+    '     * Define the application\'s command schedule.\n',
     0,
   )
-
-  expect.soft(regex.toString())
-    .toMatchInlineSnapshot(`"/(^\\s+)?(?=\\/\\/)/dgm"`)
-
-  expect.soft(match)
-    .toMatchInlineSnapshot(`
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^(?!\\s*\\*).*?(?:(?=\\*\\/)|$\\n?)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
       [
-        "",
-        undefined,
-      ]
-    `)
+        50,
+        50,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
 
-  expect(indices).toEqual([
-  {
-    "start": 0,
-    "end": 0,
-    "length": 0
-  },
-  {
-    "start": 4294967295,
-    "end": 4294967295,
-    "length": 0
-  }
-])
+it('unexpected match: 2', () => {
+  const { match, indices, regex } = execute(
+    '^(?!\\s*\\*).*?(?:(?=\\*\\/)|$\\n?)',
+    '    /**\n',
+    7,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^(?!\\s*\\*).*?(?:(?=\\*\\/)|$\\n?)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 3', () => {
+  const { match, indices, regex } = execute(
+    '^(?!\\s*\\*).*?(?:(?=\\*\\/)|$\\n?)',
+    '     * Register the commands for the application.\n',
+    0,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^(?!\\s*\\*).*?(?:(?=\\*\\/)|$\\n?)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        50,
+        50,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
 })

@@ -1,28 +1,101 @@
 import { expect, it } from 'vitest'
-import { execute, regexConstructor } from '../_execute'
+import { execute } from '../_execute'
 
-it("mismatch", () => {
+it('unexpected match: 0', () => {
   const { match, indices, regex } = execute(
-    "^[a-z][a-zA-Z0-9_]*\\b",
-    "init =\n",
-    0,
+    '((^(?=[a-z]))|^$)',
+    'init : Model\n',
+    13,
   )
-
-  expect.soft(regex.toString())
-    .toMatchInlineSnapshot(`"/^[a-z][a-zA-Z0-9_]*\\b/dgm"`)
-
-  expect.soft(match)
-    .toMatchInlineSnapshot(`
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^(?=[a-z]))|^$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+      undefined,
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
       [
-        "init",
-      ]
-    `)
+        13,
+        13,
+      ],
+      [
+        13,
+        13,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
 
-  expect(indices).toEqual([
-  {
-    "start": 0,
-    "end": 4,
-    "length": 4
-  }
-])
+it('unexpected match: 1', () => {
+  const { match, indices, regex } = execute(
+    '((^(?=[a-z]))|^$)',
+    'update : Msg -> Model -> Model\n',
+    31,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^(?=[a-z]))|^$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+      undefined,
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        31,
+        31,
+      ],
+      [
+        31,
+        31,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 2', () => {
+  const { match, indices, regex } = execute(
+    '((^(?=[a-z]))|^$)',
+    'view : Model -> Html Msg\n',
+    25,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^(?=[a-z]))|^$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+      undefined,
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        25,
+        25,
+      ],
+      [
+        25,
+        25,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
 })

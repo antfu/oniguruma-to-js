@@ -1,29 +1,25 @@
 import { expect, it } from 'vitest'
-import { execute, regexConstructor } from '../_execute'
+import { execute } from '../_execute'
 
-it("mismatch", () => {
-  const { match, indices, regex } = execute(
-    "(?<!\\\\)\\n",
-    "ExecStart=/usr/bin/emacs --fg-daemon\n",
+it('expected match: 0', () => {
+  const { indices, regex } = execute(
+    '(?<!\\\\)\\n',
+    'ExecStart=/usr/bin/emacs --fg-daemon\n',
     10,
   )
-
-  expect.soft(regex.toString())
-    .toMatchInlineSnapshot(`"/(?<!\\\\)\\n/dgm"`)
-
-  expect.soft(match)
-    .toMatchInlineSnapshot(`
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<!\\\\)\\n"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
       [
-        "
-      ",
-      ]
-    `)
-
-  expect(indices).toEqual([
-  {
-    "start": 36,
-    "end": 37,
-    "length": 1
-  }
-])
+        36,
+        37,
+      ],
+    ]
+  `)
+  expect(indices).toMatchObject([
+    [
+      36,
+      37,
+    ],
+  ])
 })

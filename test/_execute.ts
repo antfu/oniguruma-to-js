@@ -9,28 +9,16 @@ export function execute(
 ): {
     regex: RegExp
     match: RegExpExecArray | null
-    indices: Array<{
-      start: number
-      length: number
-      end: number
-    }>
+    indices: Array<[start: number, end: number]>
   } {
   const regex = regexConstructor(pattern)
   regex.lastIndex = startIndex
   const match = regex.exec(input)
   const indices = match?.indices?.map((indice) => {
     if (indice == null) {
-      return {
-        end: MAX,
-        start: MAX,
-        length: 0,
-      }
+      return [MAX, MAX] as [number, number]
     }
-    return {
-      start: indice[0],
-      length: indice[1] - indice[0],
-      end: indice[1],
-    }
+    return indice
   }) ?? []
 
   return {

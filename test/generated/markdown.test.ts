@@ -1,34 +1,389 @@
 import { expect, it } from 'vitest'
-import { execute, regexConstructor } from '../_execute'
+import { execute } from '../_execute'
 
-it("mismatch", () => {
+it('unexpected match: 0', () => {
   const { match, indices, regex } = execute(
-    "^(-{3,})(?=[ \\t]*$\\n?)",
-    "------------\n",
+    '((^|\\G)([ ]{2,4}|\\t))|(^[ \\t]*$)',
+    '  * the other one\n',
+    2,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^|)([ ]{2,4}|\\t))|(^[ \\t]*$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      undefined,
+      undefined,
+      undefined,
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        18,
+        18,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        18,
+        18,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 1', () => {
+  const { match, indices, regex } = execute(
+    '((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)',
+    'Note that --- not considering the asterisk --- the actual text\n',
     0,
   )
-
-  expect.soft(regex.toString())
-    .toMatchInlineSnapshot(`"/^(-{3,})(?=[ \\t]*$\\n?)/dgm"`)
-
-  expect.soft(match)
-    .toMatchInlineSnapshot(`
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      undefined,
+      undefined,
+      undefined,
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
       [
-        "------------",
-        "------------",
-      ]
-    `)
+        63,
+        63,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        63,
+        63,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
 
-  expect(indices).toEqual([
-  {
-    "start": 0,
-    "end": 12,
-    "length": 12
-  },
-  {
-    "start": 0,
-    "end": 12,
-    "length": 12
-  }
-])
+it('unexpected match: 2', () => {
+  const { match, indices, regex } = execute(
+    '((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)',
+    ' 2. second item\n',
+    0,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      undefined,
+      undefined,
+      undefined,
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        16,
+        16,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        16,
+        16,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 3', () => {
+  const { match, indices, regex } = execute(
+    '((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)',
+    ' 3. third item\n',
+    0,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      undefined,
+      undefined,
+      undefined,
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        15,
+        15,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        15,
+        15,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 4', () => {
+  const { match, indices, regex } = execute(
+    '((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)',
+    'Note again how the actual text starts at 4 columns in (4 characters\n',
+    0,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      undefined,
+      undefined,
+      undefined,
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        68,
+        68,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        68,
+        68,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 5', () => {
+  const { match, indices, regex } = execute(
+    '((^|\\G)([ ]{2,4}|\\t))|(^[ \\t]*$)',
+    '      * lentils\n',
+    6,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^|)([ ]{2,4}|\\t))|(^[ \\t]*$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      undefined,
+      undefined,
+      undefined,
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        16,
+        16,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        16,
+        16,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 6', () => {
+  const { match, indices, regex } = execute(
+    '((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)',
+    ' 2. Boil some water.\n',
+    0,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      undefined,
+      undefined,
+      undefined,
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        21,
+        21,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        21,
+        21,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 7', () => {
+  const { match, indices, regex } = execute(
+    '((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)',
+    ' 3. Dump everything in the pot and follow\n',
+    0,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      undefined,
+      undefined,
+      undefined,
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        42,
+        42,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        42,
+        42,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
+
+it('unexpected match: 8', () => {
+  const { match, indices, regex } = execute(
+    '((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)',
+    'Notice again how text always lines up on 4-space indents (including\n',
+    0,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"((^|\\￿)([ ]{2,4}|\\t))|(^[ \\t]*$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      undefined,
+      undefined,
+      undefined,
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        68,
+        68,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        68,
+        68,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
 })

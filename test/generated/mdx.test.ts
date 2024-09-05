@@ -1,22 +1,25 @@
 import { expect, it } from 'vitest'
-import { execute, regexConstructor } from '../_execute'
+import { execute } from '../_execute'
 
-it("should not match", () => {
+it('unexpected match: 0', () => {
   const { match, indices, regex } = execute(
-    "(?<=\\S)\\*|\\*(?=\\S)",
-    "{/* From https://mdxjs.com/docs/what-is-mdx/#mdx-syntax */}\n",
+    '(?<=\\S)\\*|\\*(?=\\S)',
+    '{/* From https://mdxjs.com/docs/what-is-mdx/#mdx-syntax */}\n',
     3,
   )
-
-  expect.soft(regex.toString())
-    .toMatchInlineSnapshot(`"/(?<=\\S)\\*|\\*(?=\\S)/dgm"`)
-
-  expect.soft(match)
-    .toMatchInlineSnapshot(`
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=\\S)\\*|\\*(?=\\S)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "*",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
       [
-        "*",
-      ]
-    `)
-
-  expect(match).toEqual(null)
+        56,
+        57,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
 })

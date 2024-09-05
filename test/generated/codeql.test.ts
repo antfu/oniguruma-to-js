@@ -1,34 +1,41 @@
 import { expect, it } from 'vitest'
-import { execute, regexConstructor } from '../_execute'
+import { execute } from '../_execute'
 
-it("mismatch", () => {
+it('unexpected match: 0', () => {
   const { match, indices, regex } = execute(
-    "(?x)((?:\\b(?:import)(?:(?!(?:[0-9A-Za-z_])))))",
-    "import python\n",
+    '(?x)(^|\\G)\\s*([^*]|\\*(?!/))(?=([^*]|[*](?!/))*$)',
+    ' */\n',
     0,
   )
-
-  expect.soft(regex.toString())
-    .toMatchInlineSnapshot(`"/((?:\\b(?:import)(?:(?!(?:[0-9A-Za-z_])))))/dgm"`)
-
-  expect.soft(match)
-    .toMatchInlineSnapshot(`
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(^|)\\s*([^*]|\\*(?!\\/))(?=([^*]|[*](?!\\/))*$)"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "/",
+      "",
+      "/",
+      "
+    ",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
       [
-        "import",
-        "import",
-      ]
-    `)
-
-  expect(indices).toEqual([
-  {
-    "start": 0,
-    "end": 6,
-    "length": 6
-  },
-  {
-    "start": 0,
-    "end": 6,
-    "length": 6
-  }
-])
+        2,
+        3,
+      ],
+      [
+        2,
+        2,
+      ],
+      [
+        2,
+        3,
+      ],
+      [
+        3,
+        4,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
 })

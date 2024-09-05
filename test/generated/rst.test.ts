@@ -1,28 +1,48 @@
 import { expect, it } from 'vitest'
-import { execute, regexConstructor } from '../_execute'
+import { execute } from '../_execute'
 
-it("mismatch", () => {
+it('unexpected match: 0', () => {
   const { match, indices, regex } = execute(
-    "\\[(?:[\\w\\.-]+|[#*])\\]_",
-    "Lorem ipsum [#]_ dolor sit amet ... [#]_\n",
+    '^(?=\\s)|^\\s*$',
+    'This is a normal text paragraph again.\n',
     0,
   )
-
-  expect.soft(regex.toString())
-    .toMatchInlineSnapshot(`"/\\[(?:[\\w\\.-]+|[#*])\\]_/dgm"`)
-
-  expect.soft(match)
-    .toMatchInlineSnapshot(`
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^(?=\\s)|^\\s*$"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
       [
-        "[#]_",
-      ]
-    `)
+        39,
+        39,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
+})
 
-  expect(indices).toEqual([
-  {
-    "start": 12,
-    "end": 16,
-    "length": 4
-  }
-])
+it('unexpected match: 1', () => {
+  const { match, indices, regex } = execute(
+    '^(?=\\S)|^\\s*$',
+    '.. From https://devguide.python.org/documentation/markup/\n',
+    3,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^(?=\\S)|^\\s*$"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        58,
+        58,
+      ],
+    ]
+  `)
+  expect(match).toBe(null)
 })

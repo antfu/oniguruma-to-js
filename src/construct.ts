@@ -54,11 +54,6 @@ export function construct(
 
   const flagSet = new Set<string>(Array.isArray(flags) ? flags : flags.split(''))
 
-  if (options.ignoreContiguousAnchors) {
-    pattern = pattern
-      .replace(/\\G/g, '')
-  }
-
   if (pattern.includes('\\p{'))
     flagSet.add('u')
 
@@ -66,7 +61,11 @@ export function construct(
     // `\A` is `^` in JavaScript
     .replace(/\\A/g, '^')
     // `\Z` is `$` in JavaScript
-    .replace(/\\Z/gi, '$')
+    .replace(/\\Z/g, '(?=\\n?$)')
+    // `\z` is `$` in JavaScript
+    .replace(/\\z/g, '$')
+    // Replace backreferences `\g<name>` with `\k<name>`
+    .replace(/\\g</g, '\\k<')
     // `\x{00}` is `\u0000` in JavaScript
     .replace(/\\x\{([^}]*)\}/g, (m, hex) => `\\u${hex.padStart(4, '0')}`)
     // Extract flags
@@ -92,6 +91,19 @@ export function construct(
       }
       return ''
     })
+
+  if (options.ignoreContiguousAnchors) {
+    if (pattern.includes('\\G')) {
+      flagSet.add('y')
+    }
+    if (pattern.startsWith('\\G')) {
+      pattern = pattern.slice(2)
+    }
+    pattern = pattern
+      .replace(/\|\\G(\||\))/g, '$1')
+      .replace(/(\(|\|)\\G\|/g, '$1')
+      .replace(/\\G/g, '')
+  }
 
   if (flagSet.has('x')) {
     throw new RegExpConversionError(

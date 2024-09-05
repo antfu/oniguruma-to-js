@@ -59,8 +59,8 @@ interface ExpectedMatch {
 }
 
 export async function run(): Promise<void> {
-  await fs.rm(new URL('../test/generated', import.meta.url), { recursive: true, force: true })
-  await fs.mkdir(new URL('../test/generated', import.meta.url), { recursive: true })
+  await fs.rm(new URL('../test-generated', import.meta.url), { recursive: true, force: true })
+  await fs.mkdir(new URL('../test-generated', import.meta.url), { recursive: true })
 
   await loadWasm(import('@shikijs/core/wasm-inlined'))
 
@@ -161,7 +161,7 @@ export async function run(): Promise<void> {
 
     const testCode = [
       `import { expect, it } from 'vitest'`,
-      `import { execute } from '../_execute'`,
+      `import { execute } from '../test/_execute'`,
       '',
     ]
 
@@ -200,7 +200,7 @@ export async function run(): Promise<void> {
       )
     })
 
-    await fs.writeFile(new URL(`../test/generated/${file.name}.test.ts`, import.meta.url), testCode.join('\n'))
+    await fs.writeFile(new URL(`../test-generated/${file.name}.test.ts`, import.meta.url), testCode.join('\n'))
     continue
   }
 }

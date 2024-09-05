@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest'
-import { execute } from '../_execute'
+import { execute } from '../test/_execute'
 
 it('expected match: 0', () => {
   const { indices, regex } = execute(

@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest'
-import { execute } from '../_execute'
+import { execute } from '../test/_execute'
 
 it('unexpected match: 0', () => {
   const { match, indices, regex } = execute(
@@ -7,62 +7,9 @@ it('unexpected match: 0', () => {
     '    {\n',
     5,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?![\\w\\s]*\\b(?:class|interface|struct|enum|event)\\b)(?<return_type>(?<type_name>(?:(?:ref\\s+(?:readonly\\s+)?)?(?:(?:(?<identifier>@?[_A-Za-z][_0-9A-Za-z]*)\\s*::\\s*)?(?<name_and_type_args>\\k<identifier>\\s*(?<type_args>\\s*<(?:[^<>]|\\k<type_args>)+>\\s*)?)(?:\\s*\\.\\s*\\k<name_and_type_args>)*|(?<tuple>\\s*\\((?:[^()]|\\k<tuple>)+\\)))(?:\\s*\\?\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*(?:\\?)?\\s*)*))\\s+)(?<interface_name>\\k<type_name>\\s*\\.\\s*)?(?<property_name>\\k<identifier>)\\s*(?=\\{|=>|\\/\\/|\\/\\*|$)"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "
-    ",
-      "
-    ",
-      "",
-      undefined,
-      "",
-      undefined,
-      undefined,
-      undefined,
-      "",
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        5,
-        6,
-      ],
-      [
-        5,
-        6,
-      ],
-      [
-        5,
-        5,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        5,
-        5,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        6,
-        6,
-      ],
-    ]
-  `)
+  expect.soft(regex.source).toMatchInlineSnapshot()
+  expect.soft(match).toMatchInlineSnapshot()
+  expect.soft(indices).toMatchInlineSnapshot()
   expect(match).toBe(null)
 })
 
@@ -72,62 +19,9 @@ it('unexpected match: 1', () => {
     '        }\n',
     9,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?![\\w\\s]*\\b(?:class|interface|struct|enum|event)\\b)(?<return_type>(?<type_name>(?:(?:ref\\s+(?:readonly\\s+)?)?(?:(?:(?<identifier>@?[_A-Za-z][_0-9A-Za-z]*)\\s*::\\s*)?(?<name_and_type_args>\\k<identifier>\\s*(?<type_args>\\s*<(?:[^<>]|\\k<type_args>)+>\\s*)?)(?:\\s*\\.\\s*\\k<name_and_type_args>)*|(?<tuple>\\s*\\((?:[^()]|\\k<tuple>)+\\)))(?:\\s*\\?\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*(?:\\?)?\\s*)*))\\s+)(?<interface_name>\\k<type_name>\\s*\\.\\s*)?(?<property_name>\\k<identifier>)\\s*(?=\\{|=>|\\/\\/|\\/\\*|$)"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "
-    ",
-      "
-    ",
-      "",
-      undefined,
-      "",
-      undefined,
-      undefined,
-      undefined,
-      "",
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        9,
-        10,
-      ],
-      [
-        9,
-        10,
-      ],
-      [
-        9,
-        9,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        9,
-        9,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        10,
-        10,
-      ],
-    ]
-  `)
+  expect.soft(regex.source).toMatchInlineSnapshot()
+  expect.soft(match).toMatchInlineSnapshot()
+  expect.soft(indices).toMatchInlineSnapshot()
   expect(match).toBe(null)
 })
 
@@ -137,62 +31,9 @@ it('unexpected match: 2', () => {
     '                });\n',
     19,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?![\\w\\s]*\\b(?:class|interface|struct|enum|event)\\b)(?<return_type>(?<type_name>(?:(?:ref\\s+(?:readonly\\s+)?)?(?:(?:(?<identifier>@?[_A-Za-z][_0-9A-Za-z]*)\\s*::\\s*)?(?<name_and_type_args>\\k<identifier>\\s*(?<type_args>\\s*<(?:[^<>]|\\k<type_args>)+>\\s*)?)(?:\\s*\\.\\s*\\k<name_and_type_args>)*|(?<tuple>\\s*\\((?:[^()]|\\k<tuple>)+\\)))(?:\\s*\\?\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*(?:\\?)?\\s*)*))\\s+)(?<interface_name>\\k<type_name>\\s*\\.\\s*)?(?<property_name>\\k<identifier>)\\s*(?=\\{|=>|\\/\\/|\\/\\*|$)"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "
-    ",
-      "
-    ",
-      "",
-      undefined,
-      "",
-      undefined,
-      undefined,
-      undefined,
-      "",
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        19,
-        20,
-      ],
-      [
-        19,
-        20,
-      ],
-      [
-        19,
-        19,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        19,
-        19,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        20,
-        20,
-      ],
-    ]
-  `)
+  expect.soft(regex.source).toMatchInlineSnapshot()
+  expect.soft(match).toMatchInlineSnapshot()
+  expect.soft(indices).toMatchInlineSnapshot()
   expect(match).toBe(null)
 })
 
@@ -202,8 +43,8 @@ it('expected match: 0', () => {
     '        public static void Main(string[] args)\n',
     21,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<return_type>(?<type_name>(?:(?:ref\\s+(?:readonly\\s+)?)?(?:(?:(?<identifier>@?[_A-Za-z][_0-9A-Za-z]*)\\s*::\\s*)?(?<name_and_type_args>\\k<identifier>\\s*(?<type_args>\\s*<(?:[^<>]|\\k<type_args>)+>\\s*)?)(?:\\s*\\.\\s*\\k<name_and_type_args>)*|(?<tuple>\\s*\\((?:[^()]|\\k<tuple>)+\\)))(?:\\s*\\?\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*(?:\\?)?\\s*)*))\\s+)(?<interface_name>\\k<type_name>\\s*\\.\\s*)?(\\k<identifier>)\\s*(<([^<>]+)>)?\\s*(?=\\()"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.source).toMatchInlineSnapshot()
+  expect.soft(indices).toMatchInlineSnapshot()
   expect(indices).toMatchObject([[22, 31], [22, 27], [22, 26], [27, 31], [22, 26], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [27, 31], [4294967295, 4294967295], [4294967295, 4294967295]])
 })
 
@@ -213,43 +54,8 @@ it('expected match: 1', () => {
     '        public static void Main(string[] args)\n',
     32,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?:(?:\\b(ref|params|out|in|this)\\b)\\s+)?(?<type_name>(?:(?:ref\\s+)?(?:(?:(?<identifier>@?[_A-Za-z][_0-9A-Za-z]*)\\s*::\\s*)?(?<name_and_type_args>\\k<identifier>\\s*(?<type_args>\\s*<(?:[^<>]|\\k<type_args>)+>\\s*)?)(?:\\s*\\.\\s*\\k<name_and_type_args>)*|(?<tuple>\\s*\\((?:[^()]|\\k<tuple>)+\\)))(?:\\s*\\?\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*(?:\\?)?\\s*)*))\\s+(\\k<identifier>)"`)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        38,
-        41,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        38,
-        40,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        38,
-        38,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        41,
-        41,
-      ],
-    ]
-  `)
+  expect.soft(regex.source).toMatchInlineSnapshot()
+  expect.soft(indices).toMatchInlineSnapshot()
   expect(indices).toMatchObject([[32, 45], [4294967295, 4294967295], [32, 40], [41, 45], [32, 38], [4294967295, 4294967295], [4294967295, 4294967295], [41, 45]])
 })
 
@@ -259,51 +65,8 @@ it('expected match: 2', () => {
     '            var host = CreateHostBuilder(args).Build();\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?:(?:(\\bref)\\s+(?:(\\breadonly)\\s+)?)?(\\bvar\\b)|(?<type_name>(?:(?:ref\\s+(?:readonly\\s+)?)?(?:(?:(?<identifier>@?[_A-Za-z][_0-9A-Za-z]*)\\s*::\\s*)?(?<name_and_type_args>\\k<identifier>\\s*(?<type_args>\\s*<(?:[^<>]|\\k<type_args>)+>\\s*)?)(?:\\s*\\.\\s*\\k<name_and_type_args>)*|(?<tuple>\\s*\\((?:[^()]|\\k<tuple>)+\\)))(?:\\s*[?*]\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*(?:\\?)?\\s*)*)))\\s+(\\k<identifier>)\\s*(?!=>)(?=,|;|=|\\))"`)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        20,
-        21,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        20,
-        20,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        20,
-        20,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        21,
-        21,
-      ],
-    ]
-  `)
+  expect.soft(regex.source).toMatchInlineSnapshot()
+  expect.soft(indices).toMatchInlineSnapshot()
   expect(indices).toMatchObject([[12, 21], [4294967295, 4294967295], [4294967295, 4294967295], [12, 15], [4294967295, 4294967295], [16, 20], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [16, 20]])
 })
 
@@ -313,51 +76,8 @@ it('expected match: 3', () => {
     '            using (var scope = host.Services.CreateScope())\n',
     19,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?:(?:(\\bref)\\s+(?:(\\breadonly)\\s+)?)?(\\bvar\\b)|(?<type_name>(?:(?:ref\\s+(?:readonly\\s+)?)?(?:(?:(?<identifier>@?[_A-Za-z][_0-9A-Za-z]*)\\s*::\\s*)?(?<name_and_type_args>\\k<identifier>\\s*(?<type_args>\\s*<(?:[^<>]|\\k<type_args>)+>\\s*)?)(?:\\s*\\.\\s*\\k<name_and_type_args>)*|(?<tuple>\\s*\\((?:[^()]|\\k<tuple>)+\\)))(?:\\s*[?*]\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*(?:\\?)?\\s*)*)))\\s+(\\k<identifier>)\\s*(?!=>)(?=,|;|=|\\))"`)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        28,
-        29,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        28,
-        28,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        28,
-        28,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        29,
-        29,
-      ],
-    ]
-  `)
+  expect.soft(regex.source).toMatchInlineSnapshot()
+  expect.soft(indices).toMatchInlineSnapshot()
   expect(indices).toMatchObject([[19, 29], [4294967295, 4294967295], [4294967295, 4294967295], [19, 22], [4294967295, 4294967295], [23, 28], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [23, 28]])
 })
 
@@ -367,51 +87,8 @@ it('expected match: 4', () => {
     '                var db = scope.ServiceProvider.GetRequiredService<KCTestContext>();\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?:(?:(\\bref)\\s+(?:(\\breadonly)\\s+)?)?(\\bvar\\b)|(?<type_name>(?:(?:ref\\s+(?:readonly\\s+)?)?(?:(?:(?<identifier>@?[_A-Za-z][_0-9A-Za-z]*)\\s*::\\s*)?(?<name_and_type_args>\\k<identifier>\\s*(?<type_args>\\s*<(?:[^<>]|\\k<type_args>)+>\\s*)?)(?:\\s*\\.\\s*\\k<name_and_type_args>)*|(?<tuple>\\s*\\((?:[^()]|\\k<tuple>)+\\)))(?:\\s*[?*]\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*(?:\\?)?\\s*)*)))\\s+(\\k<identifier>)\\s*(?!=>)(?=,|;|=|\\))"`)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        22,
-        23,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        22,
-        22,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        22,
-        22,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        23,
-        23,
-      ],
-    ]
-  `)
+  expect.soft(regex.source).toMatchInlineSnapshot()
+  expect.soft(indices).toMatchInlineSnapshot()
   expect(indices).toMatchObject([[16, 23], [4294967295, 4294967295], [4294967295, 4294967295], [16, 19], [4294967295, 4294967295], [20, 22], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [20, 22]])
 })
 
@@ -421,8 +98,8 @@ it('expected match: 5', () => {
     '        public static IHostBuilder CreateHostBuilder(string[] args) =>\n',
     21,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<return_type>(?<type_name>(?:(?:ref\\s+(?:readonly\\s+)?)?(?:(?:(?<identifier>@?[_A-Za-z][_0-9A-Za-z]*)\\s*::\\s*)?(?<name_and_type_args>\\k<identifier>\\s*(?<type_args>\\s*<(?:[^<>]|\\k<type_args>)+>\\s*)?)(?:\\s*\\.\\s*\\k<name_and_type_args>)*|(?<tuple>\\s*\\((?:[^()]|\\k<tuple>)+\\)))(?:\\s*\\?\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*(?:\\?)?\\s*)*))\\s+)(?<interface_name>\\k<type_name>\\s*\\.\\s*)?(\\k<identifier>)\\s*(<([^<>]+)>)?\\s*(?=\\()"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.source).toMatchInlineSnapshot()
+  expect.soft(indices).toMatchInlineSnapshot()
   expect(indices).toMatchObject([[22, 52], [22, 35], [22, 34], [35, 52], [22, 34], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [35, 52], [4294967295, 4294967295], [4294967295, 4294967295]])
 })
 
@@ -432,42 +109,7 @@ it('expected match: 6', () => {
     '        public static IHostBuilder CreateHostBuilder(string[] args) =>\n',
     53,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?:(?:\\b(ref|params|out|in|this)\\b)\\s+)?(?<type_name>(?:(?:ref\\s+)?(?:(?:(?<identifier>@?[_A-Za-z][_0-9A-Za-z]*)\\s*::\\s*)?(?<name_and_type_args>\\k<identifier>\\s*(?<type_args>\\s*<(?:[^<>]|\\k<type_args>)+>\\s*)?)(?:\\s*\\.\\s*\\k<name_and_type_args>)*|(?<tuple>\\s*\\((?:[^()]|\\k<tuple>)+\\)))(?:\\s*\\?\\s*)?(?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*(?:\\?)?\\s*)*))\\s+(\\k<identifier>)"`)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        59,
-        62,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        59,
-        61,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        59,
-        59,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-      [
-        62,
-        62,
-      ],
-    ]
-  `)
+  expect.soft(regex.source).toMatchInlineSnapshot()
+  expect.soft(indices).toMatchInlineSnapshot()
   expect(indices).toMatchObject([[53, 66], [4294967295, 4294967295], [53, 61], [62, 66], [53, 59], [4294967295, 4294967295], [4294967295, 4294967295], [62, 66]])
 })

@@ -64,8 +64,6 @@ export function construct(
     .replace(/\\Z/g, '(?=\\n?$)')
     // `\z` is `$` in JavaScript
     .replace(/\\z/g, '$')
-    // Replace backreferences `\g<name>` with `\k<name>`
-    .replace(/\\g</g, '\\k<')
     // `\x{00}` is `\u0000` in JavaScript
     .replace(/\\x\{([^}]*)\}/g, (m, hex) => `\\u${hex.padStart(4, '0')}`)
     // Extract flags

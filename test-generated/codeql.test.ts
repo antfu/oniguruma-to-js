@@ -7,8 +7,9 @@ it('unexpected match: 0', () => {
     ' */\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(^)\\s*([^*]|\\*(?!\\/))(?=([^*]|[*](?!\\/))*$)"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dmy"`)
+  expect.soft(match).toMatchInlineSnapshot(`null`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
   expect(match).toBe(null)
 })

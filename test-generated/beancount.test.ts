@@ -7,9 +7,26 @@ it('unexpected match: 0', () => {
     '2012-11-03 * "Transfer to pay credit card"\n',
     43,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S))"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        43,
+        43,
+      ],
+      [
+        43,
+        43,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -19,9 +36,26 @@ it('unexpected match: 1', () => {
     '  Assets:MyBank:Checking            -400.00 USD\n',
     47,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S|^\\s*[A-Z]))"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        48,
+        48,
+      ],
+      [
+        48,
+        48,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -31,9 +65,26 @@ it('unexpected match: 2', () => {
     '  Liabilities:CreditCard             400.00 USD\n',
     47,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S|^\\s*[A-Z]))"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        48,
+        48,
+      ],
+      [
+        48,
+        48,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -43,9 +94,26 @@ it('unexpected match: 3', () => {
     '2012-11-03 * "Transfer to account in Canada"\n',
     45,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S))"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        45,
+        45,
+      ],
+      [
+        45,
+        45,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -55,9 +123,26 @@ it('unexpected match: 4', () => {
     '  Assets:MyBank:Checking            -400.00 USD @ 1.09 CAD\n',
     58,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S|^\\s*[A-Z]))"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        59,
+        59,
+      ],
+      [
+        59,
+        59,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -67,8 +152,25 @@ it('unexpected match: 5', () => {
     '  Assets:FR:SocGen:Checking          436.01 CAD\n',
     47,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(^\\s*$|^\\S|^\\s*[A-Z]))"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        48,
+        48,
+      ],
+      [
+        48,
+        48,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })

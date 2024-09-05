@@ -7,7 +7,7 @@ export default antfu(
     type: 'lib',
   },
   {
-    files: ['test/generated/*.test.ts'],
+    files: ['test-generated/*.test.ts'],
     rules: {
       'no-template-curly-in-string': 'off',
     },

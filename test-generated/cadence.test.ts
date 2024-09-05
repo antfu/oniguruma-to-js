@@ -7,9 +7,21 @@ it('unexpected match: 0', () => {
     '    // Declare a public field of type String.\n',
     6,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        46,
+        46,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -19,9 +31,21 @@ it('unexpected match: 1', () => {
     '    //\n',
     6,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        7,
+        7,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -31,9 +55,21 @@ it('unexpected match: 2', () => {
     '    // All fields must be initialized in the init() function.\n',
     6,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        62,
+        62,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -43,9 +79,21 @@ it('unexpected match: 3', () => {
     '    // The init() function is required if the contract contains any fields.\n',
     6,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        76,
+        76,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -55,9 +103,21 @@ it('unexpected match: 4', () => {
     '    // Public function that returns our friendly greeting!\n',
     6,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        59,
+        59,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -67,8 +127,20 @@ it('unexpected match: 5', () => {
     '// From https://docs.onflow.org/cadence/tutorial/02-hello-world/\n',
     2,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(match).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"^"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        65,
+        65,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })

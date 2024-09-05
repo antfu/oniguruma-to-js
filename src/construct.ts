@@ -93,13 +93,15 @@ export function construct(
     })
 
   if (options.ignoreContiguousAnchors) {
+    if (pattern.includes('\\G')) {
+      flagSet.add('y')
+    }
     if (pattern.startsWith('\\G')) {
       pattern = pattern.slice(2)
-      flagSet.add('y')
-      flagSet.delete('g')
     }
-
     pattern = pattern
+      .replace(/\|\\G(\||\))/g, '$1')
+      .replace(/(\(|\|)\\G\|/g, '$1')
       .replace(/\\G/g, '')
   }
 

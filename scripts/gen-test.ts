@@ -175,6 +175,7 @@ export async function run(): Promise<void> {
         `    ${JSON.stringify(un.startIndex)},`,
         `  )`,
         `  expect.soft(regex.source).toMatchInlineSnapshot()`,
+        `  expect.soft(regex.flags).toMatchInlineSnapshot()`,
         `  expect.soft(match).toMatchInlineSnapshot()`,
         `  expect.soft(indices).toMatchInlineSnapshot()`,
         `  expect(match).toBe(null)`,

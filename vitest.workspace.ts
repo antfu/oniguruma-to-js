@@ -1,6 +1,18 @@
 import { defineWorkspace } from 'vitest/config'
 
 export default defineWorkspace([
-  'vitest.config.unit.ts',
-  'vitest.config.generated.ts',
+  {
+    extends: 'vitest.config.ts',
+    test: {
+      name: 'unit',
+      include: ['test/*.test.ts'],
+    },
+  },
+  {
+    extends: './vitest.config.ts',
+    test: {
+      name: 'generated',
+      include: ['test-generated/*.test.ts'],
+    },
+  },
 ])

@@ -1,11 +1,13 @@
-import { fileURLToPath } from 'node:url'
 import fs from 'node:fs/promises'
 import { basename } from 'node:path'
-import fg from 'fast-glob'
-import type { RegexEngine } from '@shikijs/core'
+import { fileURLToPath } from 'node:url'
 import { createHighlighterCore, createJavaScriptRegexEngine, createWasmOnigEngine, loadWasm } from '@shikijs/core'
-import type { IOnigMatch } from '@shikijs/vscode-textmate'
+import fg from 'fast-glob'
 import vitesseDark from 'shiki/themes/vitesse-dark.mjs'
+
+import type { RegexEngine } from '@shikijs/core'
+import type { IOnigMatch } from '@shikijs/vscode-textmate'
+
 import { regexConstructor } from '../test/_execute'
 
 export interface Instance {

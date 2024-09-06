@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^3.2.1
-        version: 3.2.1(@typescript-eslint/utils@8.4.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.3.10)(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.4))
+        specifier: ^3.3.1
+        version: 3.3.1(@typescript-eslint/utils@8.4.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.3.10)(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.4))
       '@antfu/ni':
         specifier: ^0.23.0
         version: 0.23.0
@@ -72,8 +72,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@antfu/eslint-config@3.2.1':
-    resolution: {integrity: sha512-v3Y1SBLFn5O9glgAdBD6ae+BtgPoSuFLw1ufYQoMnOlBalPSMlLBde+iSDSbfbzAIT7KGUoozQIofr2Bp9Kb7Q==}
+  '@antfu/eslint-config@3.3.1':
+    resolution: {integrity: sha512-Emn8Uh+nIHuaPszRSBe+GsBGqgvaXG8/+hMXO5Smotf29x3NWON8Yz0di7DkmWn3FGO6FHgChrPvD1caaW4BAQ==}
     hasBin: true
     peerDependencies:
       '@eslint-react/eslint-plugin': ^1.5.8
@@ -2555,9 +2555,6 @@ packages:
     engines: {node: '>=0.10'}
     hasBin: true
 
-  pkg-types@1.1.1:
-    resolution: {integrity: sha512-ko14TjmDuQJ14zsotODv7dBlwxKhUKQEhuhmbqo1uCi9BB0Z2alo/wAXg6q1dTR5TyuqYyWhjtfe/Tsh+X28jQ==}
-
   pkg-types@1.2.0:
     resolution: {integrity: sha512-+ifYuSSqOQ8CqP4MbZA5hDpb97n3E8SVWdJe+Wms9kj745lmd3b7EZJiqvmLwAlmRfjrI7Hi5z3kdBJ93lFNPA==}
 
@@ -3092,11 +3089,6 @@ packages:
   tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
-  tsx@4.10.5:
-    resolution: {integrity: sha512-twDSbf7Gtea4I2copqovUiNTEDrT8XNFXsuHpfGbdpW/z9ZW4fTghzzhAG0WfrCuJmJiOEY1nLIjq4u3oujRWQ==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-
   tsx@4.19.0:
     resolution: {integrity: sha512-bV30kM7bsLZKZIOCHeMNVMJ32/LuJzLVajkQI/qf92J2Qr08ueLQvW00PUZGiuLPP760UINwupgUj8qrSCPUKg==}
     engines: {node: '>=18.0.0'}
@@ -3325,7 +3317,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@antfu/eslint-config@3.2.1(@typescript-eslint/utils@8.4.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.3.10)(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.4))':
+  '@antfu/eslint-config@3.3.1(@typescript-eslint/utils@8.4.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.3.10)(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.4))':
     dependencies:
       '@antfu/install-pkg': 0.4.1
       '@clack/prompts': 0.7.0
@@ -4346,9 +4338,9 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  bundle-require@5.0.0(esbuild@0.21.5):
+  bundle-require@5.0.0(esbuild@0.23.1):
     dependencies:
-      esbuild: 0.21.5
+      esbuild: 0.23.1
       load-tsconfig: 0.2.5
 
   c12@1.11.1:
@@ -4363,7 +4355,7 @@ snapshots:
       ohash: 1.1.3
       pathe: 1.1.2
       perfect-debounce: 1.0.0
-      pkg-types: 1.1.1
+      pkg-types: 1.2.0
       rc9: 2.1.2
 
   cac@6.7.14: {}
@@ -5029,7 +5021,7 @@ snapshots:
 
   esno@4.7.0:
     dependencies:
-      tsx: 4.10.5
+      tsx: 4.19.0
 
   espree@10.1.0:
     dependencies:
@@ -5277,9 +5269,9 @@ snapshots:
 
   importx@0.4.3:
     dependencies:
-      bundle-require: 5.0.0(esbuild@0.21.5)
+      bundle-require: 5.0.0(esbuild@0.23.1)
       debug: 4.3.6
-      esbuild: 0.21.5
+      esbuild: 0.23.1
       jiti: 2.0.0-beta.2
       jiti-v1: jiti@1.21.6
       pathe: 1.1.2
@@ -5617,7 +5609,7 @@ snapshots:
       mlly: 1.7.1
       mri: 1.2.0
       pathe: 1.1.2
-      pkg-types: 1.1.1
+      pkg-types: 1.2.0
       postcss: 8.4.44
       postcss-nested: 6.0.1(postcss@8.4.44)
       semver: 7.6.3
@@ -5628,7 +5620,7 @@ snapshots:
     dependencies:
       acorn: 8.12.0
       pathe: 1.1.2
-      pkg-types: 1.1.1
+      pkg-types: 1.2.0
       ufo: 1.5.3
 
   mri@1.2.0: {}
@@ -5808,12 +5800,6 @@ snapshots:
   picomatch@4.0.2: {}
 
   pidtree@0.6.0: {}
-
-  pkg-types@1.1.1:
-    dependencies:
-      confbox: 0.1.7
-      mlly: 1.7.1
-      pathe: 1.1.2
 
   pkg-types@1.2.0:
     dependencies:
@@ -6332,13 +6318,6 @@ snapshots:
 
   tslib@2.7.0: {}
 
-  tsx@4.10.5:
-    dependencies:
-      esbuild: 0.20.2
-      get-tsconfig: 4.7.5
-    optionalDependencies:
-      fsevents: 2.3.3
-
   tsx@4.19.0:
     dependencies:
       esbuild: 0.23.1
@@ -6382,7 +6361,7 @@ snapshots:
       mkdist: 1.5.1(typescript@5.5.4)
       mlly: 1.7.1
       pathe: 1.1.2
-      pkg-types: 1.1.1
+      pkg-types: 1.2.0
       pretty-bytes: 6.1.1
       rollup: 3.29.4
       rollup-plugin-dts: 6.1.1(rollup@3.29.4)(typescript@5.5.4)

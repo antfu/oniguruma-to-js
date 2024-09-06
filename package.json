@@ -63,7 +63,7 @@
     "prepare": "simple-git-hooks && git submodule update --init --recursive"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.2.1",
+    "@antfu/eslint-config": "^3.3.1",
     "@antfu/ni": "^0.23.0",
     "@antfu/utils": "^0.7.10",
     "@shikijs/core": "^1.16.2",

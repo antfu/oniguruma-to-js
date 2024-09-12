@@ -24,8 +24,23 @@ export function getPatterns(grammar: any): Set<string> {
   const patterns = new Set<string>()
 
   function traverse(a: any): void {
-    if (!a)
+    if (Array.isArray(a)) {
+      a.forEach((j: any) => {
+        traverse(j)
+      })
       return
+    }
+    if (!a || typeof a !== 'object')
+      return
+    if (a.foldingStartMarker) {
+      patterns.add(a.foldingStartMarker)
+    }
+    if (a.foldingStopMarker) {
+      patterns.add(a.foldingStopMarker)
+    }
+    if (a.firstLineMatch) {
+      patterns.add(a.firstLineMatch)
+    }
     if (a.match)
       patterns.add(a.match)
     if (a.begin)
@@ -35,9 +50,16 @@ export function getPatterns(grammar: any): Set<string> {
     if (a.while)
       patterns.add(a.while)
     if (a.patterns) {
-      a.patterns.forEach((j: any) => {
-        traverse(j)
-      })
+      traverse(a.patterns)
+    }
+    if (a.captures) {
+      traverse(Object.values(a.captures))
+    }
+    if (a.beginCaptures) {
+      traverse(Object.values(a.beginCaptures))
+    }
+    if (a.endCaptures) {
+      traverse(Object.values(a.endCaptures))
     }
     Object.values(a.repository || {}).forEach((j: any) => {
       traverse(j)

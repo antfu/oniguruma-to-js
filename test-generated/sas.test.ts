@@ -8,30 +8,9 @@ it('unexpected match: 0', () => {
     12,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"([¬<>^~]?=(:)?|>|<|\\||!|¦|¬|^|~|<>|><|\\|\\|)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "",
-      "",
-      undefined,
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        16,
-        16,
-      ],
-      [
-        16,
-        16,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-    ]
-  `)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
+  expect.soft(match).toMatchInlineSnapshot(`null`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
   expect(match).toBe(null)
 })
 
@@ -42,30 +21,9 @@ it('unexpected match: 1', () => {
     11,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"([¬<>^~]?=(:)?|>|<|\\||!|¦|¬|^|~|<>|><|\\|\\|)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "",
-      "",
-      undefined,
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        23,
-        23,
-      ],
-      [
-        23,
-        23,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-    ]
-  `)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
+  expect.soft(match).toMatchInlineSnapshot(`null`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
   expect(match).toBe(null)
 })
 
@@ -76,30 +34,9 @@ it('unexpected match: 2', () => {
     14,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"([¬<>^~]?=(:)?|>|<|\\||!|¦|¬|^|~|<>|><|\\|\\|)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "",
-      "",
-      undefined,
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        18,
-        18,
-      ],
-      [
-        18,
-        18,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-    ]
-  `)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
+  expect.soft(match).toMatchInlineSnapshot(`null`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
   expect(match).toBe(null)
 })
 
@@ -110,30 +47,9 @@ it('unexpected match: 3', () => {
     10,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"([¬<>^~]?=(:)?|>|<|\\||!|¦|¬|^|~|<>|><|\\|\\|)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "",
-      "",
-      undefined,
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        14,
-        14,
-      ],
-      [
-        14,
-        14,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-    ]
-  `)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
+  expect.soft(match).toMatchInlineSnapshot(`null`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
   expect(match).toBe(null)
 })
 
@@ -144,30 +60,9 @@ it('unexpected match: 4', () => {
     13,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"([¬<>^~]?=(:)?|>|<|\\||!|¦|¬|^|~|<>|><|\\|\\|)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "",
-      "",
-      undefined,
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        22,
-        22,
-      ],
-      [
-        22,
-        22,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-    ]
-  `)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
+  expect.soft(match).toMatchInlineSnapshot(`null`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
   expect(match).toBe(null)
 })
 
@@ -178,30 +73,9 @@ it('unexpected match: 5', () => {
     10,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"([¬<>^~]?=(:)?|>|<|\\||!|¦|¬|^|~|<>|><|\\|\\|)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "",
-      "",
-      undefined,
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        14,
-        14,
-      ],
-      [
-        14,
-        14,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-    ]
-  `)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
+  expect.soft(match).toMatchInlineSnapshot(`null`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
   expect(match).toBe(null)
 })
 
@@ -212,30 +86,9 @@ it('unexpected match: 6', () => {
     13,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"([¬<>^~]?=(:)?|>|<|\\||!|¦|¬|^|~|<>|><|\\|\\|)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "",
-      "",
-      undefined,
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        25,
-        25,
-      ],
-      [
-        25,
-        25,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-    ]
-  `)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
+  expect.soft(match).toMatchInlineSnapshot(`null`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
   expect(match).toBe(null)
 })
 
@@ -246,29 +99,8 @@ it('unexpected match: 7', () => {
     12,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"([¬<>^~]?=(:)?|>|<|\\||!|¦|¬|^|~|<>|><|\\|\\|)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
-  expect.soft(match).toMatchInlineSnapshot(`
-    [
-      "",
-      "",
-      undefined,
-    ]
-  `)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        21,
-        21,
-      ],
-      [
-        21,
-        21,
-      ],
-      [
-        4294967295,
-        4294967295,
-      ],
-    ]
-  `)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
+  expect.soft(match).toMatchInlineSnapshot(`null`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
   expect(match).toBe(null)
 })

@@ -8,7 +8,7 @@ it('unexpected match: 0', () => {
     19,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"[\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"']+"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgmu"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgu"`)
   expect.soft(match).toMatchInlineSnapshot(`
     [
       "'",
@@ -32,7 +32,7 @@ it('unexpected match: 1', () => {
     22,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"[\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"']+"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgmu"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgu"`)
   expect.soft(match).toMatchInlineSnapshot(`
     [
       ")",
@@ -56,7 +56,7 @@ it('unexpected match: 2', () => {
     16,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"[\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"']+"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgmu"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgu"`)
   expect.soft(match).toMatchInlineSnapshot(`
     [
       "'",
@@ -80,7 +80,7 @@ it('unexpected match: 3', () => {
     39,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"[\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"']+"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgmu"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgu"`)
   expect.soft(match).toMatchInlineSnapshot(`
     [
       ")",
@@ -104,7 +104,7 @@ it('unexpected match: 4', () => {
     42,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"[\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"']+"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgmu"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgu"`)
   expect.soft(match).toMatchInlineSnapshot(`
     [
       ")",
@@ -128,7 +128,7 @@ it('unexpected match: 5', () => {
     43,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"[\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"']+"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgmu"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgu"`)
   expect.soft(match).toMatchInlineSnapshot(`
     [
       ")",
@@ -152,7 +152,7 @@ it('unexpected match: 6', () => {
     39,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"[\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"']+"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgmu"`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgu"`)
   expect.soft(match).toMatchInlineSnapshot(`
     [
       "]",

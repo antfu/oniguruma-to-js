@@ -39,6 +39,8 @@ export function loweringTextmateGrammar<T extends TextmateGrammarBasic>(
       a.begin = handle(a.begin)
     if (a.end)
       a.end = handle(a.end)
+    if (a.while)
+      a.while = handle(a.while)
     if (a.patterns) {
       a.patterns.forEach((j: any) => {
         traverse(j)

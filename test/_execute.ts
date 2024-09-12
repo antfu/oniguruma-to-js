@@ -11,12 +11,28 @@ export function execute(
     match: RegExpExecArray | null
     indices: Array<[start: number, end: number]>
   } {
+  let startAnchor = false
+  // Contiguous anchors simulation
+  if (pattern.startsWith('(^|\\G)') || pattern.startsWith('(\\G|^)'))
+    startAnchor = true
+
   const regex = regexConstructor(pattern)
+  let offset = 0
   regex.lastIndex = startIndex
-  const match = regex.exec(input)
+  let match = regex.exec(input)
+  if (!match && startAnchor) {
+    offset = startIndex
+    match = regex.exec(input.slice(startIndex))
+  }
   const indices = match?.indices?.map((indice) => {
     if (indice == null) {
       return [MAX, MAX] as [number, number]
+    }
+    if (offset) {
+      return [
+        indice[0] + offset,
+        indice[1] + offset,
+      ] as [number, number]
     }
     return indice
   }) ?? []
@@ -32,7 +48,7 @@ export function regexConstructor(pattern: string): RegExp {
   return onigurumaToRegexp(
     pattern,
     {
-      flags: 'dgm',
+      flags: 'dg',
       ignoreContiguousAnchors: true,
     },
   )

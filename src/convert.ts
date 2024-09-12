@@ -1,8 +1,8 @@
-import { construct } from './construct'
-import { syntaxLowering } from './lowering'
-
 import type { ConstructOptions } from './construct'
 import type { SyntaxLoweringOptions } from './lowering'
+
+import { construct } from './construct'
+import { syntaxLowering } from './lowering'
 
 export interface OnigurumaToRegexpOptions extends Omit<ConstructOptions, 'original'>, SyntaxLoweringOptions {
 

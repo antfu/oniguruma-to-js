@@ -712,3 +712,69 @@ it('unexpected match: 22', () => {
   `)
   expect(match).toBe(null)
 })
+
+it('expected match: 0', () => {
+  const { indices, regex } = execute(
+    '(\\G|^)"',
+    'msgid "FFmpeg Thumbnailer"\n',
+    6,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(^)""`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[6, 7], [6, 6]])
+})
+
+it('expected match: 1', () => {
+  const { indices, regex } = execute(
+    '(\\G|^)"',
+    'msgstr "FFmpeg 縮圖產生工具"\n',
+    7,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(^)""`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[7, 8], [7, 7]])
+})
+
+it('expected match: 2', () => {
+  const { indices, regex } = execute(
+    '(\\G|^)"',
+    'msgid "Video thumbnail generator using FFmpeg"\n',
+    6,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(^)""`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[6, 7], [6, 6]])
+})
+
+it('expected match: 3', () => {
+  const { indices, regex } = execute(
+    '(\\G|^)"',
+    'msgstr "使用 FFmpeg 的影片縮圖產生工具"\n',
+    7,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(^)""`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[7, 8], [7, 7]])
+})
+
+it('expected match: 4', () => {
+  const { indices, regex } = execute(
+    '(\\G|^)"',
+    'msgid ""\n',
+    6,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(^)""`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[6, 7], [6, 6]])
+})
+
+it('expected match: 5', () => {
+  const { indices, regex } = execute(
+    '(\\G|^)"',
+    'msgstr "FFmpeg 縮圖產生工具是用於 KDE 檔案管理器的影片縮圖產生器。"\n',
+    7,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(^)""`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[7, 8], [7, 7]])
+})

@@ -18,3 +18,14 @@ it('expected match: 0', () => {
   `)
   expect(indices).toMatchObject([[21, 26]])
 })
+
+it('expected match: 1', () => {
+  const { indices, regex } = execute(
+    '(?!\\G)(?=\\{|\\bwhere\\b|;|=)|$',
+    '    subscript(i: Int) -> Room {\n',
+    25,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?!)(?=\\{|\\bwhere\\b|;|=)|$"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[30, 30]])
+})

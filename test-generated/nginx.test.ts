@@ -3,84 +3,132 @@ import { execute } from '../test/_execute'
 
 it('expected match: 0', () => {
   const { indices, regex } = execute(
-    ';',
-    '      fastcgi_pass   127.0.0.1:1025;\n',
-    19,
+    '(?<=\\G|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])',
+    'worker_processes  5;  ## Default: 1\n',
+    17,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`";"`)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        35,
-        36,
-      ],
-    ]
-  `)
-  expect(indices).toMatchObject([[35, 36]])
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[18, 19], [18, 19]])
 })
 
 it('expected match: 1', () => {
   const { indices, regex } = execute(
-    ';',
-    '      proxy_pass      http://127.0.0.1:8080;\n',
-    17,
+    '(?<=\\G|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])',
+    '  worker_connections  4096;  ## Default: 1024\n',
+    21,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`";"`)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        43,
-        44,
-      ],
-    ]
-  `)
-  expect(indices).toMatchObject([[43, 44]])
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[22, 26], [22, 26]])
 })
 
 it('expected match: 2', () => {
   const { indices, regex } = execute(
-    '(?:^|\\s)(weight|max_conn|max_fails|fail_timeout|slow_start)(=)(\\d[\\d\\.]*[bBkKmMgGtTsShHdD]?)(?:\\s|;|$)',
-    '    server 127.0.0.3:8000 weight=5;\n',
-    11,
+    '(?<=\\G|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])',
+    '  log_format   main \'$remote_addr - $remote_user [$time_local]  $status \'\n',
+    13,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`"(?:^|\\s)(weight|max_conn|max_fails|fail_timeout|slow_start)(=)(\\d[\\d\\.]*[bBkKmMgGtTsShHdD]?)(?:\\s|;|$)"`)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        25,
-        35,
-      ],
-      [
-        26,
-        32,
-      ],
-      [
-        32,
-        33,
-      ],
-      [
-        33,
-        34,
-      ],
-    ]
-  `)
-  expect(indices).toMatchObject([[25, 35], [26, 32], [32, 33], [33, 34]])
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[15, 19], [15, 19]])
 })
 
 it('expected match: 3', () => {
   const { indices, regex } = execute(
-    ';',
-    '    server 192.168.0.1:8001;\n',
+    '(?<=\\G|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])',
+    '  access_log   logs/access.log  main;\n',
+    13,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[32, 36], [32, 36]])
+})
+
+it('expected match: 4', () => {
+  const { indices, regex } = execute(
+    '(?<=\\G|\\s)(on|off|true|false)(?=[\\t ;])',
+    '  sendfile     on;\n',
     11,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot(`";"`)
-  expect.soft(indices).toMatchInlineSnapshot(`
-    [
-      [
-        27,
-        28,
-      ],
-    ]
-  `)
-  expect(indices).toMatchObject([[27, 28]])
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(on|off|true|false)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[15, 17], [15, 17]])
+})
+
+it('expected match: 5', () => {
+  const { indices, regex } = execute(
+    '(?<=\\G|\\s)(on|off|true|false)(?=[\\t ;])',
+    '  tcp_nopush   on;\n',
+    13,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(on|off|true|false)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[15, 17], [15, 17]])
+})
+
+it('expected match: 6', () => {
+  const { indices, regex } = execute(
+    '(?<=\\G|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])',
+    '    listen       80;\n',
+    11,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[17, 19], [17, 19]])
+})
+
+it('expected match: 7', () => {
+  const { indices, regex } = execute(
+    '(?<=\\G|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])',
+    '    access_log   logs/domain1.access.log  main;\n',
+    15,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[42, 46], [42, 46]])
+})
+
+it('expected match: 8', () => {
+  const { indices, regex } = execute(
+    '(?<=\\G|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])',
+    '    listen       80;\n',
+    11,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[17, 19], [17, 19]])
+})
+
+it('expected match: 9', () => {
+  const { indices, regex } = execute(
+    '(?<=\\G|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])',
+    '    access_log   logs/domain2.access.log  main;\n',
+    15,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[42, 46], [42, 46]])
+})
+
+it('expected match: 10', () => {
+  const { indices, regex } = execute(
+    '(?<=\\G|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])',
+    '    listen          80;\n',
+    11,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[20, 22], [20, 22]])
+})
+
+it('expected match: 11', () => {
+  const { indices, regex } = execute(
+    '(?<=\\G|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])',
+    '    access_log      logs/big.server.access.log main;\n',
+    15,
+  )
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect(indices).toMatchObject([[47, 51], [47, 51]])
 })

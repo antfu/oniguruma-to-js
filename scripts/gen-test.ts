@@ -32,6 +32,8 @@ export function getPatterns(grammar: any): Set<string> {
       patterns.add(a.begin)
     if (a.end)
       patterns.add(a.end)
+    if (a.while)
+      patterns.add(a.while)
     if (a.patterns) {
       a.patterns.forEach((j: any) => {
         traverse(j)

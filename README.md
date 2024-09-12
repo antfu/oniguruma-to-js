@@ -13,6 +13,10 @@ Supported Oniguruma features:
 - `[:alnum:]`, `[:alpha:]` etc. POSIX bracket expressions
 - `(?x)` extended, free-spacing mode
 - `(?i:..)` flags modifiers
+- `(?>..)` atomic group via [`regex`](https://github.com/slevithan/regex)
+- `..*+` possessive quantifiers via [`regex`](https://github.com/slevithan/regex)
+- `\h` `\H` hex digit shorthands
+- `\p{Blank}` `\p{Print}` etc. Oniguruma-flavored unicode property escapes
 
 ## Usage
 

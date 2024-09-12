@@ -16,10 +16,11 @@ export function onigurumaToRegexp(
     pattern: converted,
     flags,
   } = syntaxLowering(pattern, {
-    removePossessiveQuantifier: true,
-    removeAtomicGroup: true,
+    // removePossessiveQuantifier: false,
+    // removeAtomicGroup: false,
     convertHexDigitsShorthand: true,
     convertUnicodeCategory: true,
+    useRegex: true,
     ...options,
   })
 

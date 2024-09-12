@@ -1,3 +1,4 @@
+import { rewrite } from 'regex'
 import { RegExpConversionError } from './error'
 
 const UNNECESSARY_ESCAPE_CHAR_CLASS = new Set('!?:=+$(){}_><# ')
@@ -35,6 +36,13 @@ const KNOWN_FLAGS = /* @__PURE__ */ new Set('gimsuyx')
 
 export interface SyntaxLoweringOptions {
   /**
+   * Use the `regex` package lower the syntaxes, like Atomic Group, Possessive Quantifiers, etc.
+   *
+   * @default false
+   */
+  useRegex?: boolean
+
+  /**
    * Preserve flags like `x` in `(?i)` or `(?i:...)`.
    *
    * When set to `true`, meaning the result might not be directly usable in JavaScript.
@@ -48,6 +56,8 @@ export interface SyntaxLoweringOptions {
    *
    * This might alter the meaning of the regex.
    *
+   * You might not need this when `useRegex` is enabled.
+   *
    * @default false
    */
   removePossessiveQuantifier?: boolean
@@ -56,6 +66,8 @@ export interface SyntaxLoweringOptions {
    * Remove atomic group like `(?>...)` to non-capturing group `(?:...)`.
    *
    * This might alter the meaning of the regex.
+   *
+   * You might not need this when `useRegex` is enabled.
    *
    * @default false
    */
@@ -89,6 +101,7 @@ export function syntaxLowering(
   options: SyntaxLoweringOptions = {},
 ): SyntaxLoweringResult {
   const {
+    useRegex = false,
     preserveFlags = false,
     removePossessiveQuantifier = false,
     removeAtomicGroup = false,
@@ -365,8 +378,25 @@ export function syntaxLowering(
     )
   }
 
+  const flagStr = [...flags].join('')
+
+  if (useRegex) {
+    output = rewrite(
+      output,
+      {
+        flags: flagStr,
+        unicodeSetsPlugin: null,
+        disable: {
+          n: true,
+          v: true,
+          x: true,
+        },
+      },
+    ).expression
+  }
+
   return {
     pattern: output,
-    flags: [...flags].join(''),
+    flags: flagStr,
   }
 }

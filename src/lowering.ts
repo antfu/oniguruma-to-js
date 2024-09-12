@@ -86,6 +86,13 @@ export interface SyntaxLoweringOptions {
    * @default false
    */
   convertUnicodeCategory?: boolean
+
+  /**
+   * Expand nested character class like `[a-z[0-9]]` to `[a-z0-9]`.
+   *
+   * @default false
+   */
+  expandNestedCharacterClass?: boolean
 }
 
 export interface SyntaxLoweringResult {
@@ -107,6 +114,7 @@ export function syntaxLowering(
     removeAtomicGroup = false,
     convertHexDigitsShorthand = false,
     convertUnicodeCategory = false,
+    expandNestedCharacterClass = false,
   } = options
 
   let output = ''
@@ -117,6 +125,7 @@ export function syntaxLowering(
 
   const freeSpacingLocal: number[] = []
   let freeSpacingGlobal = false
+  let isInNestedCharClass = false
 
   let i = 0
   try {
@@ -339,6 +348,18 @@ export function syntaxLowering(
           stack.unshift(char)
         }
 
+        // Nested character class
+        if (head === '[' && expandNestedCharacterClass) {
+          isInNestedCharClass = true
+          i += 1
+          // Nested character class starting with `-`
+          if (input[i] === '-') {
+            output += '\\-'
+            i += 1
+          }
+          continue
+        }
+
         output += char
         i += 1
         continue
@@ -346,6 +367,11 @@ export function syntaxLowering(
 
       // Alternation close bracket
       if (char === ']') {
+        if (isInNestedCharClass) {
+          isInNestedCharClass = false
+          i += 1
+          continue
+        }
         if (head === '[')
           stack.shift()
         output += char

@@ -21,6 +21,7 @@ export function onigurumaToRegexp(
     convertHexDigitsShorthand: true,
     convertUnicodeCategory: true,
     useRegex: true,
+    expandNestedCharacterClass: true,
     ...options,
   })
 

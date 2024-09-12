@@ -14,7 +14,7 @@ it('with flags', () => {
 it('unicode case', () => {
   const regex = onigurumaToRegexp('\\s*(--)((?:[[-\\w][^\\x{00}-\\x{7F}]]|(?:\\\\\\h{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f\\h]))+)')
   expect(regex.source)
-    .toMatchInlineSnapshot(`"\\s*(--)((?:[[-\\w][^\\u0000-\\u007F]]|(?:\\\\[0-9A-Fa-f]{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f0-9A-Fa-f]))+)"`)
+    .toMatchInlineSnapshot(`"\\s*(--)((?:[\\-\\w^\\u0000-\\u007F]|(?:\\\\[0-9A-Fa-f]{1,6}[\\s\\t\\n\\f]?|\\\\[^\\n\\f0-9A-Fa-f]))+)"`)
 })
 
 it('*+', () => {
@@ -59,4 +59,9 @@ it('invalid escape', () => {
   // TODO: fix this
   // expect(onigurumaToRegexp('(?:^|\\G)[\\t ]*(\\[)((?:[^\\[\\\\\\]]|\\\\[\\[\\\\\\]]?)+?)(\\])(:)[ \\t]*(?:(<)((?:[^\\n<\\\\>]|\\\\[<\\\\>]?)*)(>)|(\\g<destination_raw>))(?:[\\t ]+(?:(")((?:[^"\\\\]|\\\\["\\\\]?)*)(")|(\')((?:[^\'\\\\]|\\\\[\'\\\\]?)*)(\')|(\\()((?:[^\\)\\\\]|\\\\[\\)\\\\]?)*)(\\))))?$(?<destination_raw>(?!\\<)(?:(?:[^\\p{Cc}\\ \\\\\\(\\)]|\\\\[\\(\\)\\\\]?)|\\(\\g<destination_raw>*\\))+){0}').source)
   //   .toMatchInlineSnapshot()
+})
+
+it('yaml case', () => {
+  expect(onigurumaToRegexp('[^\\s[-?:,\\[\\]{}#&*!|>\'"%@]]|[?:-]\\S').source)
+    .toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@]|[?:-]\\S"`)
 })

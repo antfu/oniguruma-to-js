@@ -7,8 +7,23 @@ it('expected match: 0', () => {
     'name: Check dist/\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        0,
+        0,
+      ],
+      [
+        3,
+        4,
+      ],
+      [
+        5,
+        6,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[0, 0], [3, 4], [5, 6]])
 })
 
@@ -18,8 +33,15 @@ it('expected match: 1', () => {
     'name: Check dist/\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        0,
+        1,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[0, 1]])
 })
 
@@ -29,8 +51,15 @@ it('expected match: 2', () => {
     'name: Check dist/\n',
     5,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        6,
+        7,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[6, 7]])
 })
 
@@ -40,8 +69,23 @@ it('expected match: 3', () => {
     'on:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        0,
+        0,
+      ],
+      [
+        1,
+        2,
+      ],
+      [
+        3,
+        4,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[0, 0], [1, 2], [3, 4]])
 })
 
@@ -51,8 +95,23 @@ it('expected match: 4', () => {
     '  push:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        2,
+        2,
+      ],
+      [
+        5,
+        6,
+      ],
+      [
+        7,
+        8,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[2, 2], [5, 6], [7, 8]])
 })
 
@@ -62,8 +121,15 @@ it('expected match: 5', () => {
     '  push:\n',
     2,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        2,
+        3,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[2, 3]])
 })
 
@@ -73,8 +139,23 @@ it('expected match: 6', () => {
     '    branches:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        4,
+        4,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[4, 4], [11, 12], [13, 14]])
 })
 
@@ -84,8 +165,15 @@ it('expected match: 7', () => {
     '    branches:\n',
     4,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        4,
+        5,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[4, 5]])
 })
 
@@ -95,8 +183,15 @@ it('expected match: 8', () => {
     '      - main\n',
     7,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -106,8 +201,23 @@ it('expected match: 9', () => {
     '    paths-ignore:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        4,
+        4,
+      ],
+      [
+        15,
+        16,
+      ],
+      [
+        17,
+        18,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[4, 4], [15, 16], [17, 18]])
 })
 
@@ -117,8 +227,15 @@ it('expected match: 10', () => {
     '    paths-ignore:\n',
     4,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        4,
+        5,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[4, 5]])
 })
 
@@ -128,8 +245,23 @@ it('expected match: 11', () => {
     '  pull_request:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        2,
+        2,
+      ],
+      [
+        13,
+        14,
+      ],
+      [
+        15,
+        16,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[2, 2], [13, 14], [15, 16]])
 })
 
@@ -139,8 +271,15 @@ it('expected match: 12', () => {
     '  pull_request:\n',
     2,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        2,
+        3,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[2, 3]])
 })
 
@@ -150,8 +289,23 @@ it('expected match: 13', () => {
     '    paths-ignore:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        4,
+        4,
+      ],
+      [
+        15,
+        16,
+      ],
+      [
+        17,
+        18,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[4, 4], [15, 16], [17, 18]])
 })
 
@@ -161,8 +315,15 @@ it('expected match: 14', () => {
     '    paths-ignore:\n',
     4,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        4,
+        5,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[4, 5]])
 })
 
@@ -172,8 +333,23 @@ it('expected match: 15', () => {
     'jobs:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        0,
+        0,
+      ],
+      [
+        3,
+        4,
+      ],
+      [
+        5,
+        6,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[0, 0], [3, 4], [5, 6]])
 })
 
@@ -183,8 +359,15 @@ it('expected match: 16', () => {
     'jobs:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        0,
+        1,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[0, 1]])
 })
 
@@ -194,8 +377,23 @@ it('expected match: 17', () => {
     '  check-dist:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        2,
+        2,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[2, 2], [11, 12], [13, 14]])
 })
 
@@ -205,8 +403,15 @@ it('expected match: 18', () => {
     '  check-dist:\n',
     2,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        2,
+        3,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[2, 3]])
 })
 
@@ -216,8 +421,23 @@ it('expected match: 19', () => {
     '    runs-on: ubuntu-latest\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        4,
+        4,
+      ],
+      [
+        10,
+        11,
+      ],
+      [
+        12,
+        13,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[4, 4], [10, 11], [12, 13]])
 })
 
@@ -227,8 +447,15 @@ it('expected match: 20', () => {
     '    runs-on: ubuntu-latest\n',
     4,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        4,
+        5,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[4, 5]])
 })
 
@@ -238,8 +465,15 @@ it('expected match: 21', () => {
     '    runs-on: ubuntu-latest\n',
     12,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[13, 14]])
 })
 
@@ -249,8 +483,23 @@ it('expected match: 22', () => {
     '    steps:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        4,
+        4,
+      ],
+      [
+        8,
+        9,
+      ],
+      [
+        10,
+        11,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[4, 4], [8, 9], [10, 11]])
 })
 
@@ -260,8 +509,15 @@ it('expected match: 23', () => {
     '    steps:\n',
     4,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        4,
+        5,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[4, 5]])
 })
 
@@ -271,8 +527,23 @@ it('expected match: 24', () => {
     '      - uses: actions/checkout@v3\n',
     7,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [11, 12], [13, 14]])
 })
 
@@ -282,8 +553,15 @@ it('expected match: 25', () => {
     '      - uses: actions/checkout@v3\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -293,8 +571,15 @@ it('expected match: 26', () => {
     '      - uses: actions/checkout@v3\n',
     13,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        14,
+        15,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[14, 15]])
 })
 
@@ -304,8 +589,23 @@ it('expected match: 27', () => {
     '      - name: Set Node.js 16.x\n',
     7,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [11, 12], [13, 14]])
 })
 
@@ -315,8 +615,15 @@ it('expected match: 28', () => {
     '      - name: Set Node.js 16.x\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -326,8 +633,15 @@ it('expected match: 29', () => {
     '      - name: Set Node.js 16.x\n',
     13,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        14,
+        15,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[14, 15]])
 })
 
@@ -337,8 +651,23 @@ it('expected match: 30', () => {
     '        uses: actions/setup-node@v3\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [11, 12], [13, 14]])
 })
 
@@ -348,8 +677,15 @@ it('expected match: 31', () => {
     '        uses: actions/setup-node@v3\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -359,8 +695,15 @@ it('expected match: 32', () => {
     '        uses: actions/setup-node@v3\n',
     13,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        14,
+        15,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[14, 15]])
 })
 
@@ -370,8 +713,23 @@ it('expected match: 33', () => {
     '        with:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [11, 12], [13, 14]])
 })
 
@@ -381,8 +739,15 @@ it('expected match: 34', () => {
     '        with:\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -392,8 +757,23 @@ it('expected match: 35', () => {
     '          node-version: 16.x\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        10,
+        10,
+      ],
+      [
+        21,
+        22,
+      ],
+      [
+        23,
+        24,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[10, 10], [21, 22], [23, 24]])
 })
 
@@ -403,8 +783,15 @@ it('expected match: 36', () => {
     '          node-version: 16.x\n',
     10,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        10,
+        11,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[10, 11]])
 })
 
@@ -414,8 +801,15 @@ it('expected match: 37', () => {
     '          node-version: 16.x\n',
     23,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        24,
+        25,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[24, 25]])
 })
 
@@ -425,8 +819,23 @@ it('expected match: 38', () => {
     '          cache: npm\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        10,
+        10,
+      ],
+      [
+        14,
+        15,
+      ],
+      [
+        16,
+        17,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[10, 10], [14, 15], [16, 17]])
 })
 
@@ -436,8 +845,15 @@ it('expected match: 39', () => {
     '          cache: npm\n',
     10,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        10,
+        11,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[10, 11]])
 })
 
@@ -447,8 +863,15 @@ it('expected match: 40', () => {
     '          cache: npm\n',
     16,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        17,
+        18,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[17, 18]])
 })
 
@@ -458,8 +881,23 @@ it('expected match: 41', () => {
     '      - name: Install dependencies\n',
     7,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [11, 12], [13, 14]])
 })
 
@@ -469,8 +907,15 @@ it('expected match: 42', () => {
     '      - name: Install dependencies\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -480,8 +925,15 @@ it('expected match: 43', () => {
     '      - name: Install dependencies\n',
     13,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        14,
+        15,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[14, 15]])
 })
 
@@ -491,8 +943,23 @@ it('expected match: 44', () => {
     '        run: npm ci\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        10,
+        11,
+      ],
+      [
+        12,
+        13,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [10, 11], [12, 13]])
 })
 
@@ -502,8 +969,15 @@ it('expected match: 45', () => {
     '        run: npm ci\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -513,8 +987,15 @@ it('expected match: 46', () => {
     '        run: npm ci\n',
     12,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[13, 14]])
 })
 
@@ -524,8 +1005,23 @@ it('expected match: 47', () => {
     '      - name: Rebuild the dist/ directory\n',
     7,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [11, 12], [13, 14]])
 })
 
@@ -535,8 +1031,15 @@ it('expected match: 48', () => {
     '      - name: Rebuild the dist/ directory\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -546,8 +1049,15 @@ it('expected match: 49', () => {
     '      - name: Rebuild the dist/ directory\n',
     13,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        14,
+        15,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[14, 15]])
 })
 
@@ -557,8 +1067,23 @@ it('expected match: 50', () => {
     '        run: |\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        10,
+        11,
+      ],
+      [
+        12,
+        13,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [10, 11], [12, 13]])
 })
 
@@ -568,8 +1093,15 @@ it('expected match: 51', () => {
     '        run: |\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -579,8 +1111,23 @@ it('expected match: 52', () => {
     '      - name: Compare the expected and actual dist/ directories\n',
     7,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [11, 12], [13, 14]])
 })
 
@@ -590,8 +1137,15 @@ it('expected match: 53', () => {
     '      - name: Compare the expected and actual dist/ directories\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -601,8 +1155,15 @@ it('expected match: 54', () => {
     '      - name: Compare the expected and actual dist/ directories\n',
     13,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        14,
+        15,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[14, 15]])
 })
 
@@ -612,8 +1173,23 @@ it('expected match: 55', () => {
     '        run: |\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        10,
+        11,
+      ],
+      [
+        12,
+        13,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [10, 11], [12, 13]])
 })
 
@@ -623,8 +1199,15 @@ it('expected match: 56', () => {
     '        run: |\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -634,8 +1217,23 @@ it('expected match: 57', () => {
     '        id: diff\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        9,
+        10,
+      ],
+      [
+        11,
+        12,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [9, 10], [11, 12]])
 })
 
@@ -645,8 +1243,15 @@ it('expected match: 58', () => {
     '        id: diff\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -656,8 +1261,15 @@ it('expected match: 59', () => {
     '        id: diff\n',
     11,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        12,
+        13,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[12, 13]])
 })
 
@@ -667,8 +1279,23 @@ it('expected match: 60', () => {
     '      - uses: actions/upload-artifact@v3\n',
     7,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [11, 12], [13, 14]])
 })
 
@@ -678,8 +1305,15 @@ it('expected match: 61', () => {
     '      - uses: actions/upload-artifact@v3\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -689,8 +1323,15 @@ it('expected match: 62', () => {
     '      - uses: actions/upload-artifact@v3\n',
     13,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        14,
+        15,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[14, 15]])
 })
 
@@ -700,8 +1341,23 @@ it('expected match: 63', () => {
     '        if: ${{ failure() && steps.diff.conclusion == \'failure\' }}\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        9,
+        10,
+      ],
+      [
+        11,
+        12,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [9, 10], [11, 12]])
 })
 
@@ -711,8 +1367,15 @@ it('expected match: 64', () => {
     '        if: ${{ failure() && steps.diff.conclusion == \'failure\' }}\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -722,8 +1385,15 @@ it('expected match: 65', () => {
     '        if: ${{ failure() && steps.diff.conclusion == \'failure\' }}\n',
     11,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        12,
+        13,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[12, 13]])
 })
 
@@ -733,8 +1403,23 @@ it('expected match: 66', () => {
     '        with:\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        8,
+      ],
+      [
+        11,
+        12,
+      ],
+      [
+        13,
+        14,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 8], [11, 12], [13, 14]])
 })
 
@@ -744,8 +1429,15 @@ it('expected match: 67', () => {
     '        with:\n',
     8,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        8,
+        9,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[8, 9]])
 })
 
@@ -755,8 +1447,23 @@ it('expected match: 68', () => {
     '          name: dist\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        10,
+        10,
+      ],
+      [
+        13,
+        14,
+      ],
+      [
+        15,
+        16,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[10, 10], [13, 14], [15, 16]])
 })
 
@@ -766,8 +1473,15 @@ it('expected match: 69', () => {
     '          name: dist\n',
     10,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        10,
+        11,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[10, 11]])
 })
 
@@ -777,8 +1491,15 @@ it('expected match: 70', () => {
     '          name: dist\n',
     15,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        16,
+        17,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[16, 17]])
 })
 
@@ -788,8 +1509,23 @@ it('expected match: 71', () => {
     '          path: dist/\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=(?:[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S)([^\\s:]|:\\S|\\s+(?![#\\s]))*\\s*:(\\s|$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        10,
+        10,
+      ],
+      [
+        13,
+        14,
+      ],
+      [
+        15,
+        16,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[10, 10], [13, 14], [15, 16]])
 })
 
@@ -799,8 +1535,15 @@ it('expected match: 72', () => {
     '          path: dist/\n',
     10,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        10,
+        11,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[10, 11]])
 })
 
@@ -810,7 +1553,14 @@ it('expected match: 73', () => {
     '          path: dist/\n',
     15,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@\`]|[?:-]\\S"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        16,
+        17,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[16, 17]])
 })

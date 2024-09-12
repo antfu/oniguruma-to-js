@@ -7,8 +7,19 @@ it('expected match: 0', () => {
     'data WebApp = WebApp\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=\\b(?<!')(where)\\b(?!'))|(?=\\}|;)|^(?!\\s+\\S|\\s*(?:$|\\{-[^@]|--+(?![\\p{S}\\p{P}&&^(),;\\[\\]{}\`_"']).*$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        0,
+        0,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[0, 0], [4294967295, 4294967295]])
 })
 
@@ -29,8 +40,23 @@ it('expected match: 2', () => {
     'data WebApp = WebApp\n',
     12,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<![\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"'])(?:(=)|(\\|))(?![\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"'])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        12,
+        13,
+      ],
+      [
+        12,
+        13,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[12, 13], [12, 13], [4294967295, 4294967295]])
 })
 
@@ -51,8 +77,15 @@ it('expected match: 4', () => {
     'instance Yesod WebApp\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=\\}|;)|^(?!\\s+\\S|\\s*(?:$|\\{-[^@]|--+(?![\\p{S}\\p{P}&&^(),;\\[\\]{}\`_"']).*$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        0,
+        0,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[0, 0]])
 })
 
@@ -62,8 +95,19 @@ it('expected match: 5', () => {
     'mkYesod "WebApp" [parseRoutes|\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?=\\b(?<!')(where)\\b(?!'))|(?=\\}|;)|^(?!\\s+\\S|\\s*(?:$|\\{-[^@]|--+(?![\\p{S}\\p{P}&&^(),;\\[\\]{}\`_"']).*$))"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        0,
+        0,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[0, 0], [4294967295, 4294967295]])
 })
 
@@ -73,8 +117,63 @@ it('expected match: 6', () => {
     'getHomeR = defaultLayout [whamlet|\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<![\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"''])(?:(\\.\\.)|(:)|(=)|(\\\\)|(\\|)|(<-|←)|(->|→)|(-<|↢)|(-<<|⤛)|(>-|⤚)|(>>-|⤜)|(∀))(?![\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"''])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        9,
+        10,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        9,
+        10,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[9, 10], [4294967295, 4294967295], [4294967295, 4294967295], [9, 10], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295]])
 })
 
@@ -84,7 +183,62 @@ it('expected match: 7', () => {
     'main = warpEnv WebApp\n',
     0,
   )
-  expect.soft(regex.source).toMatchInlineSnapshot()
-  expect.soft(indices).toMatchInlineSnapshot()
+  expect.soft(regex.source).toMatchInlineSnapshot(`"(?<![\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"''])(?:(\\.\\.)|(:)|(=)|(\\\\)|(\\|)|(<-|←)|(->|→)|(-<|↢)|(-<<|⤛)|(>-|⤚)|(>>-|⤜)|(∀))(?![\\p{S}\\p{P}&&^(),;\\[\\]\`{}_"''])"`)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        5,
+        6,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        5,
+        6,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
   expect(indices).toMatchObject([[5, 6], [4294967295, 4294967295], [4294967295, 4294967295], [5, 6], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295], [4294967295, 4294967295]])
 })

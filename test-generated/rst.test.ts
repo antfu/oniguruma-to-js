@@ -8,9 +8,20 @@ it('unexpected match: 0', () => {
     0,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^(?=\\s)|^\\s*$"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        39,
+        39,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -21,8 +32,19 @@ it('unexpected match: 1', () => {
     3,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^(?=\\S)|^\\s*$"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        58,
+        58,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })

@@ -8,7 +8,7 @@ it('expected match: 0', () => {
     17,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[18, 19], [18, 19]])
 })
 
@@ -19,7 +19,7 @@ it('expected match: 1', () => {
     21,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[22, 26], [22, 26]])
 })
 
@@ -30,7 +30,7 @@ it('expected match: 2', () => {
     13,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[15, 19], [15, 19]])
 })
 
@@ -41,7 +41,7 @@ it('expected match: 3', () => {
     13,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[32, 36], [32, 36]])
 })
 
@@ -52,7 +52,7 @@ it('expected match: 4', () => {
     11,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(on|off|true|false)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[15, 17], [15, 17]])
 })
 
@@ -63,7 +63,7 @@ it('expected match: 5', () => {
     13,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(on|off|true|false)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[15, 17], [15, 17]])
 })
 
@@ -74,7 +74,7 @@ it('expected match: 6', () => {
     11,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[17, 19], [17, 19]])
 })
 
@@ -85,7 +85,7 @@ it('expected match: 7', () => {
     15,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[42, 46], [42, 46]])
 })
 
@@ -96,7 +96,7 @@ it('expected match: 8', () => {
     11,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[17, 19], [17, 19]])
 })
 
@@ -107,7 +107,7 @@ it('expected match: 9', () => {
     15,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[42, 46], [42, 46]])
 })
 
@@ -118,7 +118,7 @@ it('expected match: 10', () => {
     11,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(=?[0-9][0-9\\.]*[bBkKmMgGtTsShHdD]?)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[20, 22], [20, 22]])
 })
 
@@ -129,6 +129,6 @@ it('expected match: 11', () => {
     15,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?<=|\\s)(kqueue|rtsig|epoll|\\/dev\\/poll|select|poll|eventport|max|all|default_server|default|main|crit|error|debug|warn|notice|last)(?=[\\t ;])"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[47, 51], [47, 51]])
 })

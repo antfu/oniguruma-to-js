@@ -9,7 +9,7 @@ export function execute(
 ): {
     regex: RegExp
     match: RegExpExecArray | null
-    indices: Array<[start: number, end: number]>
+    indices: Array<[start: number, end: number]> | null
   } {
   let startAnchor = false
   // Contiguous anchors simulation
@@ -22,6 +22,7 @@ export function execute(
   let match = regex.exec(input)
   if (!match && startAnchor) {
     offset = startIndex
+    regex.lastIndex = 0
     match = regex.exec(input.slice(startIndex))
   }
   const indices = match?.indices?.map((indice) => {
@@ -35,7 +36,7 @@ export function execute(
       ] as [number, number]
     }
     return indice
-  }) ?? []
+  }) ?? null
 
   return {
     regex,
@@ -48,7 +49,7 @@ export function regexConstructor(pattern: string): RegExp {
   return onigurumaToRegexp(
     pattern,
     {
-      flags: 'dg',
+      flags: 'dgm',
       ignoreContiguousAnchors: true,
     },
   )

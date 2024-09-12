@@ -26,6 +26,6 @@ it('expected match: 1', () => {
     25,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"(?!)(?=\\{|\\bwhere\\b|;|=)|$"`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(indices).toMatchInlineSnapshot(`null`)
   expect(indices).toMatchObject([[30, 30]])
 })

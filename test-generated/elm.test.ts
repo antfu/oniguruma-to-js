@@ -8,9 +8,30 @@ it('unexpected match: 0', () => {
     13,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"((^(?=[a-z]))|^$)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+      undefined,
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        13,
+        13,
+      ],
+      [
+        13,
+        13,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -21,9 +42,30 @@ it('unexpected match: 1', () => {
     31,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"((^(?=[a-z]))|^$)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+      undefined,
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        31,
+        31,
+      ],
+      [
+        31,
+        31,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -34,8 +76,29 @@ it('unexpected match: 2', () => {
     25,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"((^(?=[a-z]))|^$)"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+      "",
+      undefined,
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        25,
+        25,
+      ],
+      [
+        25,
+        25,
+      ],
+      [
+        4294967295,
+        4294967295,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })

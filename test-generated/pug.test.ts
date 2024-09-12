@@ -8,9 +8,20 @@ it('unexpected match: 0', () => {
     12,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        13,
+        13,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -21,9 +32,20 @@ it('unexpected match: 1', () => {
     15,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        16,
+        16,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -34,9 +56,20 @@ it('unexpected match: 2', () => {
     6,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        7,
+        7,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -47,9 +80,20 @@ it('unexpected match: 3', () => {
     20,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        21,
+        21,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -60,9 +104,20 @@ it('unexpected match: 4', () => {
     6,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        7,
+        7,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -73,9 +128,20 @@ it('unexpected match: 5', () => {
     33,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        34,
+        34,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -86,9 +152,20 @@ it('unexpected match: 6', () => {
     18,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        19,
+        19,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -99,9 +176,20 @@ it('unexpected match: 7', () => {
     23,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        24,
+        24,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -112,9 +200,20 @@ it('unexpected match: 8', () => {
     25,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        26,
+        26,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -125,9 +224,20 @@ it('unexpected match: 9', () => {
     10,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        11,
+        11,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })
 
@@ -138,8 +248,19 @@ it('unexpected match: 10', () => {
     20,
   )
   expect.soft(regex.source).toMatchInlineSnapshot(`"^\\s*"`)
-  expect.soft(regex.flags).toMatchInlineSnapshot(`"dg"`)
-  expect.soft(match).toMatchInlineSnapshot(`null`)
-  expect.soft(indices).toMatchInlineSnapshot(`[]`)
+  expect.soft(regex.flags).toMatchInlineSnapshot(`"dgm"`)
+  expect.soft(match).toMatchInlineSnapshot(`
+    [
+      "",
+    ]
+  `)
+  expect.soft(indices).toMatchInlineSnapshot(`
+    [
+      [
+        21,
+        21,
+      ],
+    ]
+  `)
   expect(match).toBe(null)
 })

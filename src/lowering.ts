@@ -387,6 +387,11 @@ export function syntaxLowering(
         }
       }
 
+      // Special handling for `(A|*|B)` where `*` is a literal should be escaped
+      if (char === '*' && head !== '[' && input[i - 1] === '|' && input[i - 2] !== '\\') {
+        output += '\\'
+      }
+
       // Ignore whitespace if Free-spacing mode is enabled
       if (!(freeSpacing && head !== '[' && char.match(/\s/))) {
         // Literals

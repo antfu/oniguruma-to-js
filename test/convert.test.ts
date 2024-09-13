@@ -65,3 +65,8 @@ it('yaml case', () => {
   expect(onigurumaToRegexp('[^\\s[-?:,\\[\\]{}#&*!|>\'"%@]]|[?:-]\\S').source)
     .toMatchInlineSnapshot(`"[^\\s\\-?:,\\[\\]{}#&*!|>'"%@]|[?:-]\\S"`)
 })
+
+it('html', () => {
+  expect(onigurumaToRegexp('/\\*|^#|^\\*|^\\b|*#?region|^\\.').source)
+    .toMatchInlineSnapshot(`"\\/\\*|^#|^\\*|^\\b|\\*#?region|^\\."`)
+})

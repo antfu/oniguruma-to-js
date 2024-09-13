@@ -1,7 +1,7 @@
 {
   "name": "oniguruma-to-js",
   "type": "module",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "packageManager": "pnpm@9.10.0",
   "description": "Covert Oniguruma-flavor Regexp to JavaScript native RegExp",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",

@@ -60,7 +60,7 @@ export function construct(
   pattern = pattern
     // `\A` is `^` in JavaScript
     .replace(/\\A/g, '^')
-    // `\Z` is `$` in JavaScript
+    // `\Z` is `(?=\n?$)` in JavaScript
     .replace(/\\Z/g, '(?=\\n?$)')
     // `\z` is `$` in JavaScript
     .replace(/\\z/g, '$')

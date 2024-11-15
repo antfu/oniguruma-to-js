@@ -1,3 +1,7 @@
+# ⚠️ This project is deprecated in favor of the much more well crafted [`oniguruma-to-es`](https://github.com/slevithan/oniguruma-to-es), please migrate over.
+
+---
+
 # oniguruma-to-js
 
 [![npm version][npm-version-src]][npm-version-href]
